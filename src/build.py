@@ -57,7 +57,8 @@ fl_links.append({"label": "Repositorio", "href": "https://github.com/JCuenca17/l
 body = (tpl.replace("__ICONS__", json.dumps(icons, separators=(",", ":")))
            .replace("__GITHUB__", icons["github"]["d"])
            .replace("__AVIF_WIDTHS__", json.dumps(avif_widths, separators=(",", ":")))
-           .replace("[__FREELANCE_LINKS__]", json.dumps(fl_links, ensure_ascii=False)))
+           .replace("[__FREELANCE_LINKS__]", json.dumps(fl_links, ensure_ascii=False))
+           .replace("__FREELANCE_URL__", cfg["freelance_url"]))
 
 args = sys.argv[1:]
 if "--artifact" in args:

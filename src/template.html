@@ -41,6 +41,7 @@ button{font:inherit;color:inherit}
 .nav-links a{display:block;padding:8px 12px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:500;font-size:15px}
 .nav-links a:hover{background:var(--teal-soft);color:var(--teal-ink)}
 .nav-links a.on{color:var(--teal-ink);background:var(--teal-soft)}
+.nav-actions{display:flex;gap:8px;align-items:center}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 20px;border-radius:999px;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s}
 .btn svg{width:17px;height:17px;flex:none}
@@ -153,6 +154,8 @@ section{padding-block:72px;border-top:1px solid var(--rule)}
 .c-item svg{width:20px;height:20px;flex:none;color:var(--cyan)}
 .c-item small{display:block;font-family:var(--f-mono);font-size:11px;color:#8FA3A7;letter-spacing:.06em;text-transform:uppercase}
 .c-item b{font-weight:600;font-size:15.5px;word-break:break-all}
+.c-item.hire{background:rgba(0,255,231,.12);border-color:var(--cyan)}
+.c-item.hire b{word-break:normal;overflow-wrap:anywhere}
 .c-item .act{margin-left:auto;font-family:var(--f-mono);font-size:12px;color:var(--cyan);white-space:nowrap}
 footer{padding-block:0 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
 
@@ -227,7 +230,7 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
   .about{grid-template-columns:1fr;gap:32px}
   .contact{grid-template-columns:1fr;padding:40px 28px}
   .nav-links{display:none}
-  .nav-in .btn{margin-left:auto}
+  .nav-actions{margin-left:auto}
   #ficha{height:calc(100dvh - 24px);width:calc(100vw - 24px)}
   .sheet{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);overflow-y:auto}
   .gal{border-right:0;border-bottom:1.5px solid var(--rule);grid-template-rows:auto auto auto}
@@ -236,6 +239,7 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
   .i-scroll{overflow:visible}
 }
 @media (max-width:620px){
+  .hide-xs{display:none}
   body{padding-inline:16px}
   .nav{margin-inline:-16px;padding-inline:16px}
   .grid{grid-template-columns:1fr}
@@ -313,7 +317,10 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
       <li><a href="#proyectos">Proyectos</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <button class="btn sm cy js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Dossier PDF</button>
+    <div class="nav-actions">
+      <button class="btn sm js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg><span><span class="hide-xs">Dossier </span>PDF</span></button>
+      <a class="btn sm cy" href="__FREELANCE_URL__" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg>Contrátame</a>
+    </div>
   </div>
 </nav>
 
@@ -326,8 +333,8 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
     <div class="roles"><span>Estudiante de Ingeniería de Sistemas</span><span>Desarrollador de Software</span></div>
     <p class="lead">Construyo software web, móvil y de automatización: desde un marketplace universitario publicado en Google Play hasta un videojuego de tesis con visión computacional.</p>
     <div class="hero-actions">
-      <button class="btn cy js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Descargar dossier PDF</button>
-      <a class="btn" href="#proyectos">Ver proyectos</a>
+      <a class="btn cy" href="__FREELANCE_URL__" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg>Contrátame como freelance</a>
+      <button class="btn js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Descargar dossier PDF</button>
       <div class="social">
         <a href="https://github.com/JCuenca17" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="__GITHUB__"/></svg></a>
         <a href="https://www.linkedin.com/in/josecuencag/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
@@ -377,9 +384,10 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
     <p class="label" style="color:var(--cyan)">Contacto</p>
     <h2 id="t-cont" style="margin-top:8px">¿Conversamos sobre tu <span>próximo proyecto</span>?</h2>
     <p>Estoy abierto a oportunidades de desarrollo de software y a colaborar en proyectos reales.</p>
-    <div style="margin-top:22px"><button class="btn cy js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Descargar dossier PDF</button></div>
+    <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:10px"><a class="btn cy" href="__FREELANCE_URL__" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg>Contrátame</a><button class="btn js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Descargar dossier PDF</button></div>
   </div>
   <div class="c-list">
+    <a class="c-item hire" href="__FREELANCE_URL__" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg><span><small>Perfil freelance</small><b>Servicios, precios y contacto por WhatsApp</b></span><span class="act">Ver ↗</span></a>
     <button class="c-item" type="button" id="copyMail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span><small>Email</small><b>jlcg17042001@gmail.com</b></span><span class="act">Copiar</span></button>
     <a class="c-item" href="https://www.linkedin.com/in/josecuencag/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span><small>LinkedIn</small><b>in/josecuencag</b></span><span class="act">Abrir ↗</span></a>
     <a class="c-item" href="https://github.com/JCuenca17" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="__GITHUB__"/></svg><span><small>GitHub</small><b>JCuenca17</b></span><span class="act">Abrir ↗</span></a>
