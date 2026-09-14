@@ -387,10 +387,10 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
       <p>Me interesa especializarme en desarrollo de software y gestión de proyectos tecnológicos, aportando soluciones que se usen de verdad.</p>
     </div>
     <ol class="timeline" aria-label="Trayectoria">
-      <li><span class="t-logo"><img src="img/logo-yofc.png" alt=""></span><div><p class="when">Ene 2026 – Presente</p><h3>Practicante Pre-Profesional</h3><p>YOFC Perú SAC</p></div></li>
-      <li><span class="t-logo"><img src="img/logo-unsa.jpg" alt=""></span><div><p class="when">2018 – Presente</p><h3>Ingeniería de Sistemas</h3><p>Universidad Nacional de San Agustín</p></div></li>
-      <li><span class="t-logo"><img src="img/logo-one.png" alt=""></span><div><p class="when">2022 – 2023</p><h3>Desarrollo Front-end</h3><p>Oracle Next Education · Oracle + Alura Latam</p></div></li>
-      <li><span class="t-logo"><img src="img/logo-hkust.png" alt=""></span><div><p class="when">2021</p><h3>Front-End Web UI Frameworks: Bootstrap 4</h3><p>HKUST + Coursera</p></div></li>
+      <li><span class="t-logo"><img src="img/logo-yofc.png" alt="" width="56" height="56" loading="lazy" decoding="async"></span><div><p class="when">Ene 2026 – Presente</p><h3>Practicante Pre-Profesional</h3><p>YOFC Perú SAC</p></div></li>
+      <li><span class="t-logo"><img src="img/logo-unsa.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"></span><div><p class="when">2018 – Presente</p><h3>Ingeniería de Sistemas</h3><p>Universidad Nacional de San Agustín</p></div></li>
+      <li><span class="t-logo"><img src="img/logo-one.png" alt="" width="56" height="30" loading="lazy" decoding="async"></span><div><p class="when">2022 – 2023</p><h3>Desarrollo Front-end</h3><p>Oracle Next Education · Oracle + Alura Latam</p></div></li>
+      <li><span class="t-logo"><img src="img/logo-hkust.png" alt="" width="56" height="56" loading="lazy" decoding="async"></span><div><p class="when">2021</p><h3>Front-End Web UI Frameworks: Bootstrap 4</h3><p>HKUST + Coursera</p></div></li>
     </ol>
   </div>
 </section>
@@ -747,7 +747,7 @@ const ALSO = [
   {name:"Pruebas de software", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>'}
 ];
 function renderAlso() {
-  $("#also").innerHTML = '<span class="also-t">También con formación en</span>' + ALSO.map(a => {
+  if (!$("#also .c")) $("#also").innerHTML = '<span class="also-t">También con formación en</span>' + ALSO.map(a => {
     const ico = a.svg ? a.svg : `<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#${a.hex || ICONS[a.icon].hex}"><path d="${ICONS[a.icon].d}"/></svg>`;
     return `<span class="c">${ico}${esc(a.name)}</span>`;
   }).join("");
@@ -756,7 +756,7 @@ function renderAlso() {
 /* ── Habilidades ── */
 const state = { type: "todos", tech: null };
 function renderSkills() {
-  $("#skills").innerHTML = SKILL_ORDER.map(k => {
+  if (!$("#skills").firstElementChild) $("#skills").innerHTML = SKILL_ORDER.map(k => {
     const t = TECH[k]; const n = PROJECTS.filter(p => p.tech.includes(k)).length;
     const hex = t.icon && ICONS[t.icon] ? ICONS[t.icon].hex : t.hex;
     const ico = t.icon && ICONS[t.icon] ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[t.icon].d}"/></svg>` : `<span class="mono-ico">${t.mono}</span>`;
@@ -782,7 +782,7 @@ function renderFilters() {
   f.innerHTML = html;
 }
 function renderCards() {
-  $("#grid").innerHTML = PROJECTS.map((p, i) => `
+  if (!$("#grid").firstElementChild) $("#grid").innerHTML = PROJECTS.map((p, i) => `
     <button class="card" type="button" data-i="${i}">
       <div class="thumb">${pic(p.thumb, "", "(max-width:620px) 92vw, (max-width:1000px) 46vw, 360px", 'loading="lazy" decoding="async" width="800" height="500"')}</div>
       <div class="c-body">
