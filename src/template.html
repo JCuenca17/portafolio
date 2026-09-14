@@ -143,7 +143,9 @@ section{padding-block:72px;border-top:1px solid var(--rule)}
 .more i{font-style:normal;transition:transform .2s}
 .card:hover .more i{transform:translateX(4px)}
 /* Certificaciones */
-.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.certs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:1000px){.certs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.certs{grid-template-columns:1fr}}
 .cert{display:flex;flex-direction:column;background:var(--paper);border:1.5px solid var(--rule);border-radius:20px;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s}
 .cert:hover{border-color:var(--ink);box-shadow:0 8px 0 -2px var(--ink);transform:translateY(-4px)}
 .cert-shot{position:relative;display:block;width:100%;padding:0;border:0;border-bottom:1.5px solid var(--rule);background:var(--ground);aspect-ratio:1.44;overflow:hidden;cursor:zoom-in}
@@ -158,6 +160,7 @@ section{padding-block:72px;border-top:1px solid var(--rule)}
 .cert h3{font-size:19px;font-weight:700;line-height:1.2}
 .cert-meta{font-size:14px;color:var(--muted)}
 .cert-honor{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:600;color:#6E5A22;background:#F4EDDA;padding:1px 8px;border-radius:999px;vertical-align:1px}
+.cert-detail{font-size:14px;color:var(--ink-2);line-height:1.45}
 .cert-foot{padding:0 18px 18px}
 .empty{padding:40px;text-align:center;color:var(--muted);border:1.5px dashed var(--rule);border-radius:20px}
 
@@ -627,17 +630,15 @@ const PROJECTS = [
 ];
 
 const CERTS = [
-  { title:"Formación React", org:"Oracle Next Education · Alura Latam", logo:"img/logo-one.png", hours:68, date:"Jun 2023", iso:"2023-06-12",
-    img:"img/cert-react.jpg", url:"https://app.aluracursos.com/degree/certificate/49a514de-10ec-4e66-af1f-9eedefb05293", verify:true,
-    detail:"React con JavaScript, componentes, React Router, Styled Components, Function Components y Hooks." },
-  { title:"Formación Front-End", org:"Oracle Next Education · Alura Latam", logo:"img/logo-one.png", hours:93, date:"Mar 2023", iso:"2023-03-26",
-    img:"img/cert-front-end.jpg", url:"certificados/formacion-front-end-oracle-alura.pdf", verify:false },
+  { title:"Programa Oracle Next Education (ONE)", org:"Oracle · Alura Latam", logo:"img/logo-one.png", hours:343, date:"Jun 2023", iso:"2023-06-12",
+    img:"img/cert-one-programa.jpg", url:"https://app.aluracursos.com/program/certificate/575298e0-5813-4d18-9435-24331dc15a59", verify:true,
+    detail:"6 formaciones: Principiante en Programación, Front End, React, Business Agility, Emprendimiento y Desarrollo Personal." },
   { title:"Formación HTML & CSS", org:"Alura Latam", logo:"img/logo-alura.png", hours:65, date:"Mar 2023", iso:"2023-03-06",
-    img:"img/cert-html-css.jpg", url:"https://app.aluracursos.com/degree/certificate/c618d520-2b28-4ed2-944e-40aafde21c06", verify:true },
-  { title:"Formación Principiante en Programación", org:"Oracle Next Education · Alura Latam", logo:"img/logo-one.png", hours:77, date:"Ene 2023", iso:"2023-01-24",
-    img:"img/cert-principiante.jpg", url:"https://app.aluracursos.com/degree/certificate/e52ea170-aa87-4628-80b5-2bbf5e72aa68", verify:true },
+    img:"img/cert-html-css.jpg", url:"https://app.aluracursos.com/degree/certificate/c618d520-2b28-4ed2-944e-40aafde21c06", verify:true,
+    detail:"7 cursos: HTML5 y CSS3, Flexbox y layouts responsivos." },
   { title:"Front-End Web UI Frameworks and Tools: Bootstrap 4", org:"HKUST · Coursera", logo:"img/logo-hkust.png", date:"Jun 2021", iso:"2021-06-17",
-    img:"img/cert-bootstrap.jpg", url:"https://coursera.org/verify/UT3C8MRP9BM8", verify:true, honor:"Con honores" }
+    img:"img/cert-bootstrap.jpg", url:"https://coursera.org/verify/UT3C8MRP9BM8", verify:true, honor:"Con honores",
+    detail:"Curso de The Hong Kong University of Science and Technology." }
 ];
 
 const TYPES = [["todos","Todos"],["web","Web"],["movil","Móvil"],["juego","Juegos"],["extension","Extensión"],["formal","Métodos formales"]];
@@ -748,6 +749,7 @@ function renderCerts() {
         <p class="cert-org"><img src="${c.logo}" alt="" width="30" height="30" loading="lazy">${esc(c.org)}</p>
         <h3>${esc(c.title)}</h3>
         <p class="cert-meta">${c.hours ? c.hours + " horas · " : ""}${c.date}${c.honor ? `<span class="cert-honor">${c.honor}</span>` : ""}</p>
+        ${c.detail ? `<p class="cert-detail">${esc(c.detail)}</p>` : ""}
       </div>
       <div class="cert-foot"><a class="btn sm" href="${c.url}" target="_blank" rel="noopener">${c.verify ? "Verificar certificado" : "Ver certificado (PDF)"} ↗</a></div>
     </article>`).join("");
