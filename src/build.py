@@ -70,7 +70,7 @@ TITLE = "José Luis Cuenca | Desarrollador de Software en Arequipa · Portafolio
 DESC = ("Portafolio de José Luis Cuenca Gutiérrez, estudiante de Ingeniería de Sistemas (UNSA) y desarrollador de software en Arequipa, Perú: "
         "apps web y móviles, juegos con Unity y Phaser, extensiones de Chrome y automatización.")
 
-def head_html(projects, skills):
+def head_html(projects, skills, certs):
     gsv = f'\n<meta name="google-site-verification" content="{cfg["google_verification"]}">' if cfg.get("google_verification") else ""
     ld_projects = []
     for p in projects:
@@ -100,6 +100,9 @@ def head_html(projects, skills):
          "alumniOf": [{"@type": "CollegeOrUniversity", "name": "Universidad Nacional de San Agustín de Arequipa"},
                       {"@type": "EducationalOrganization", "name": "Oracle Next Education"}],
          "knowsAbout": skills,
+         "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": c["title"], "credentialCategory": "certificate",
+                            "recognizedBy": {"@type": "Organization", "name": c["org"]}, "dateCreated": c["iso"],
+                            "url": c["url"] if c["url"].startswith("http") else URL + c["url"]} for c in certs],
          "sameAs": ["https://github.com/JCuenca17", "https://www.linkedin.com/in/josecuencag/", cfg.get("freelance_url", ""), "https://abduzcan17.itch.io/"]},
         {"@type": "ProfilePage", "@id": URL + "#pagina", "url": URL, "name": TITLE, "inLanguage": "es-PE", "mainEntity": {"@id": URL + "#persona"},
          "dateModified": datetime.date.today().isoformat(), "primaryImageOfPage": URL + "og.jpg"},
@@ -159,22 +162,25 @@ with sync_playwright() as pw:
     pg.goto(index.as_uri(), wait_until="networkidle"); pg.wait_for_timeout(800)
     projects = pg.evaluate("PROJECTS")
     skills = pg.evaluate("SKILL_ORDER.map(k => TECH[k].name).concat(ALSO.map(a => a.name))")
+    certs = pg.evaluate("CERTS")
     # Prerender: el HTML final ya trae habilidades, filtros y tarjetas
     pg.evaluate("document.querySelectorAll('.nav-links a.on').forEach(a => a.classList.remove('on')); document.getElementById('nav').classList.remove('scrolled')")
     grid = pg.evaluate("document.getElementById('grid').outerHTML")
     skl = pg.evaluate("document.getElementById('skills').outerHTML")
     flt = pg.evaluate("document.getElementById('filters').outerHTML")
     als = pg.evaluate("document.getElementById('also').outerHTML")
+    crt = pg.evaluate("document.getElementById('certs').outerHTML")
     b.close()
 
 pre = rest
 for sel_open, html in [('<div class="grid" id="grid"></div>', grid), ('<div class="skills" id="skills"></div>', skl),
                        ('<div class="filters" id="filters" role="toolbar" aria-label="Filtrar proyectos"></div>', flt),
-                       ('<div class="also" id="also"><span class="also-t">También con formación en</span></div>', als)]:
+                       ('<div class="also" id="also"><span class="also-t">También con formación en</span></div>', als),
+                       ('<div class="certs" id="certs"></div>', crt)]:
     assert sel_open in pre, sel_open
     pre = pre.replace(sel_open, html, 1)
 rest = pre
-index.write_text(standalone(head_html(projects, skills)), encoding="utf-8")
+index.write_text(standalone(head_html(projects, skills, certs)), encoding="utf-8")
 print("index.html prerenderizado:", index.stat().st_size // 1024, "KB")
 
 # ── Archivos de rastreo y despliegue ──
@@ -218,7 +224,7 @@ with sync_playwright() as pw:
         pg.screenshot(path=str(look / "projects.png"))
         pg.click(".card[data-i='1']"); pg.wait_for_timeout(900)
         pg.screenshot(path=str(look / "modal.png")); pg.keyboard.press("Escape")
-    dup = pg.evaluate("[document.querySelectorAll('.card').length, document.querySelectorAll('.skill').length, document.querySelectorAll('#also .c').length]")
+    dup = pg.evaluate("[document.querySelectorAll('.card').length, document.querySelectorAll('.skill').length, document.querySelectorAll('#also .c').length, document.querySelectorAll('.cert').length]")
     pg.evaluate("renderPrint()")
     pg.evaluate("document.querySelectorAll('#print-doc img').forEach(i => i.loading = 'eager')")
     pg.emulate_media(media="print"); pg.wait_for_load_state("networkidle"); pg.wait_for_timeout(800)

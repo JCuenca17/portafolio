@@ -18,6 +18,7 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
 body{background:var(--ground);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0;padding-inline:20px;padding-block:0}
 a{color:var(--teal)}
@@ -141,6 +142,23 @@ section{padding-block:72px;border-top:1px solid var(--rule)}
 .more{font-weight:600;font-size:14px;color:var(--ink);display:flex;align-items:center;gap:6px}
 .more i{font-style:normal;transition:transform .2s}
 .card:hover .more i{transform:translateX(4px)}
+/* Certificaciones */
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.cert{display:flex;flex-direction:column;background:var(--paper);border:1.5px solid var(--rule);border-radius:20px;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s}
+.cert:hover{border-color:var(--ink);box-shadow:0 8px 0 -2px var(--ink);transform:translateY(-4px)}
+.cert-shot{position:relative;display:block;width:100%;padding:0;border:0;border-bottom:1.5px solid var(--rule);background:var(--ground);aspect-ratio:1.44;overflow:hidden;cursor:zoom-in}
+.cert-shot picture,.cert-shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:left top;transition:transform .5s ease}
+.cert:hover .cert-shot img{transform:scale(1.03)}
+.cert-shot .zoom{position:absolute;right:10px;bottom:10px;width:34px;height:34px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);display:grid;place-items:center;opacity:0;transform:scale(.9);transition:opacity .2s,transform .2s}
+.cert-shot .zoom svg{width:16px;height:16px}
+.cert:hover .cert-shot .zoom,.cert-shot:focus-visible .zoom{opacity:1;transform:none}
+.cert-body{padding:14px 18px 18px;display:grid;gap:6px;flex:1;align-content:start}
+.cert-org{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.04em;color:var(--teal);text-transform:uppercase}
+.cert-org img{width:30px;height:30px;object-fit:contain;border-radius:8px;border:1px solid var(--rule);background:#fff;padding:3px}
+.cert h3{font-size:19px;font-weight:700;line-height:1.2}
+.cert-meta{font-size:14px;color:var(--muted)}
+.cert-honor{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:600;color:#6E5A22;background:#F4EDDA;padding:1px 8px;border-radius:999px;vertical-align:1px}
+.cert-foot{padding:0 18px 18px}
 .empty{padding:40px;text-align:center;color:var(--muted);border:1.5px dashed var(--rule);border-radius:20px}
 
 /* Contacto */
@@ -262,24 +280,27 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
   body{background:#fff;padding:0;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .screen{display:none!important}
   .print-doc{display:block}
-  .pd-cover{display:grid;grid-template-columns:1fr 46mm;gap:10mm;align-items:start;padding-bottom:6mm;border-bottom:1.5px solid var(--ink)}
+  .pd-cover{display:grid;grid-template-columns:1fr 38mm;gap:8mm;align-items:start;padding-bottom:4mm;border-bottom:1.5px solid var(--ink)}
   .pd-cover h1{font-size:30pt;font-weight:800;line-height:1;letter-spacing:-.03em}
   .pd-cover h1 .hl{position:relative;z-index:0}
   .pd-cover h1 .hl::after{content:"";position:absolute;left:-2px;right:-3px;bottom:.06em;height:.34em;background:var(--cyan);z-index:-1}
   .pd-roles{margin-top:3mm;font-weight:600;font-size:12pt;color:var(--teal-ink)}
   .pd-contact{margin-top:3mm;font-family:var(--f-mono);font-size:8.5pt;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:1mm 6mm}
-  .pd-photo{width:46mm;aspect-ratio:1;border-radius:6mm;overflow:hidden;border:1.5px solid var(--ink);box-shadow:3mm 3mm 0 var(--cyan)}
+  .pd-photo{width:38mm;aspect-ratio:1;border-radius:6mm;overflow:hidden;border:1.5px solid var(--ink);box-shadow:3mm 3mm 0 var(--cyan)}
   .pd-photo img{width:100%;height:100%;object-fit:cover;display:block}
-  .pd-lead{margin-top:4mm;font-size:10.5pt;color:var(--ink-2);line-height:1.55}
-  .pd-2{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:6mm}
+  .pd-lead{margin-top:3mm;font-size:9.8pt;color:var(--ink-2);line-height:1.55}
+  .pd-2{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:4.5mm}
   .pd-h{font-family:var(--f-mono);font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:2.5mm}
   .pd-tl{display:grid;gap:2.5mm}
   .pd-tl div b{display:block;font-size:10pt}
   .pd-tl div span{font-size:9pt;color:var(--muted)}
   .pd-sk{display:flex;flex-wrap:wrap;gap:1.6mm}
   .pd-sk span{border:1px solid var(--rule);border-radius:99px;padding:.6mm 2.6mm;font-size:8.8pt}
-  .pd-index{margin-top:6mm;display:grid;gap:0}
-  .pd-index div{display:grid;grid-template-columns:9mm 1fr auto;gap:3mm;padding:2mm 0;border-bottom:1px solid var(--rule-soft);font-size:9.5pt}
+  .pd-certs{display:grid;grid-template-columns:1fr 1fr;gap:1.5mm 8mm}
+  .pd-certs div b{display:block;font-size:9.2pt;line-height:1.25}
+  .pd-certs div span{font-size:8.3pt;color:var(--muted)}
+  .pd-index{margin-top:2mm;display:grid;gap:0}
+  .pd-index div{display:grid;grid-template-columns:9mm 1fr auto;gap:3mm;padding:1.3mm 0;border-bottom:1px solid var(--rule-soft);font-size:9.5pt}
   .pd-index i{font-style:normal;font-family:var(--f-mono);color:var(--teal)}
   .pd-index em{font-style:normal;color:var(--muted);font-size:8.5pt}
   .pd-proj{break-before:page}
@@ -315,6 +336,7 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
       <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#habilidades">Habilidades</a></li>
       <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#certificaciones">Certificaciones</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <div class="nav-actions">
@@ -361,7 +383,6 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
       <li><span class="t-logo"><img src="img/logo-yofc.png" alt="" width="56" height="56" loading="lazy" decoding="async"></span><div><p class="when">Ene 2026 – Presente</p><h3>Practicante Pre-Profesional</h3><p>YOFC Perú SAC</p></div></li>
       <li><span class="t-logo"><img src="img/logo-unsa.jpg" alt="" width="56" height="56" loading="lazy" decoding="async"></span><div><p class="when">2018 – Presente</p><h3>Ingeniería de Sistemas</h3><p>Universidad Nacional de San Agustín</p></div></li>
       <li><span class="t-logo"><img src="img/logo-one.png" alt="" width="56" height="30" loading="lazy" decoding="async"></span><div><p class="when">2022 – 2023</p><h3>Desarrollo Front-end</h3><p>Oracle Next Education · Oracle + Alura Latam</p></div></li>
-      <li><span class="t-logo"><img src="img/logo-hkust.png" alt="" width="56" height="56" loading="lazy" decoding="async"></span><div><p class="when">2021</p><h3>Front-End Web UI Frameworks: Bootstrap 4</h3><p>HKUST + Coursera</p></div></li>
     </ol>
   </div>
 </section>
@@ -377,6 +398,11 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
   <div class="filters" id="filters" role="toolbar" aria-label="Filtrar proyectos"></div>
   <div class="grid" id="grid"></div>
   <p class="empty" id="empty" hidden>No hay proyectos con ese filtro.</p>
+</section>
+
+<section id="certificaciones" aria-labelledby="t-cert">
+  <div class="s-head"><div><p class="label">Certificaciones</p><h2 id="t-cert">Formación certificada</h2></div><p>Toca un certificado para verlo en grande o verifícalo en la plataforma que lo emitió.</p></div>
+  <div class="certs" id="certs"></div>
 </section>
 
 <section class="contact" id="contacto" aria-labelledby="t-cont">
@@ -600,6 +626,20 @@ const PROJECTS = [
 
 ];
 
+const CERTS = [
+  { title:"Formación React", org:"Oracle Next Education · Alura Latam", logo:"img/logo-one.png", hours:68, date:"Jun 2023", iso:"2023-06-12",
+    img:"img/cert-react.jpg", url:"https://app.aluracursos.com/degree/certificate/49a514de-10ec-4e66-af1f-9eedefb05293", verify:true,
+    detail:"React con JavaScript, componentes, React Router, Styled Components, Function Components y Hooks." },
+  { title:"Formación Front-End", org:"Oracle Next Education · Alura Latam", logo:"img/logo-one.png", hours:93, date:"Mar 2023", iso:"2023-03-26",
+    img:"img/cert-front-end.jpg", url:"certificados/formacion-front-end-oracle-alura.pdf", verify:false },
+  { title:"Formación HTML & CSS", org:"Alura Latam", logo:"img/logo-alura.png", hours:65, date:"Mar 2023", iso:"2023-03-06",
+    img:"img/cert-html-css.jpg", url:"https://app.aluracursos.com/degree/certificate/c618d520-2b28-4ed2-944e-40aafde21c06", verify:true },
+  { title:"Formación Principiante en Programación", org:"Oracle Next Education · Alura Latam", logo:"img/logo-one.png", hours:77, date:"Ene 2023", iso:"2023-01-24",
+    img:"img/cert-principiante.jpg", url:"https://app.aluracursos.com/degree/certificate/e52ea170-aa87-4628-80b5-2bbf5e72aa68", verify:true },
+  { title:"Front-End Web UI Frameworks and Tools: Bootstrap 4", org:"HKUST · Coursera", logo:"img/logo-hkust.png", date:"Jun 2021", iso:"2021-06-17",
+    img:"img/cert-bootstrap.jpg", url:"https://coursera.org/verify/UT3C8MRP9BM8", verify:true, honor:"Con honores" }
+];
+
 const TYPES = [["todos","Todos"],["web","Web"],["movil","Móvil"],["juego","Juegos"],["extension","Extensión"],["formal","Métodos formales"]];
 
 /* ── utilidades ── */
@@ -697,6 +737,30 @@ function applyFilters(animate) {
   renderFilters();
 }
 
+/* ── Certificaciones ── */
+const ZOOM_ICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg>';
+function renderCerts() {
+  if ($("#certs").firstElementChild) return;
+  $("#certs").innerHTML = CERTS.map((c, i) => `
+    <article class="cert">
+      <button class="cert-shot" type="button" data-c="${i}" aria-label="Ampliar certificado ${esc(c.title)}">${pic(c.img, "", "(max-width:620px) 92vw, 360px", 'loading="lazy" decoding="async" width="1033" height="717"')}<span class="zoom" aria-hidden="true">${ZOOM_ICO}</span></button>
+      <div class="cert-body">
+        <p class="cert-org"><img src="${c.logo}" alt="" width="30" height="30" loading="lazy">${esc(c.org)}</p>
+        <h3>${esc(c.title)}</h3>
+        <p class="cert-meta">${c.hours ? c.hours + " horas · " : ""}${c.date}${c.honor ? `<span class="cert-honor">${c.honor}</span>` : ""}</p>
+      </div>
+      <div class="cert-foot"><a class="btn sm" href="${c.url}" target="_blank" rel="noopener">${c.verify ? "Verificar certificado" : "Ver certificado (PDF)"} ↗</a></div>
+    </article>`).join("");
+}
+let lupaCert = false;
+function openCert(i) {
+  const c = CERTS[i]; lupaCert = true;
+  $("#l-img").src = c.img; $("#l-img").alt = "Certificado: " + c.title;
+  $("#l-cap").textContent = `${c.title} · ${c.org} · ${c.date}`;
+  $("#l-prev").hidden = $("#l-next").hidden = true;
+  lupa.showModal();
+}
+
 /* ── Ficha ── */
 const ficha = $("#ficha"), lupa = $("#lupa");
 let cur = 0, img = 0, tab = "car";
@@ -771,11 +835,12 @@ function renderPrint() {
         <div><b>Practicante Pre-Profesional · YOFC Perú SAC</b><span>Ene 2026 – Presente</span></div>
         <div><b>Ingeniería de Sistemas · UNSA</b><span>2018 – Presente</span></div>
         <div><b>Desarrollo Front-end · Oracle Next Education</b><span>Oracle + Alura Latam · 2022 – 2023</span></div>
-        <div><b>Bootstrap 4: Front-End Web UI Frameworks</b><span>HKUST + Coursera · 2021</span></div>
       </div></div>
       <div><p class="pd-h">Tecnologías</p><div class="pd-sk">${skills.map(s => `<span>${esc(s)}</span>`).join("")}</div></div>
     </div>
-    <p class="pd-h" style="margin-top:7mm">Proyectos</p>
+    <p class="pd-h" style="margin-top:4.5mm">Certificaciones</p>
+    <div class="pd-certs">${CERTS.map(c => `<div><b>${esc(c.title)}</b><span>${esc(c.org)}${c.hours ? " · " + c.hours + " h" : ""} · ${c.date}</span></div>`).join("")}</div>
+    <p class="pd-h" style="margin-top:4.5mm">Proyectos</p>
     <div class="pd-index">${PROJECTS.map((p, i) => `<div><i>${String(i + 1).padStart(2, "0")}</i><span><b>${esc(p.title)}</b> — ${esc(p.kicker)}</span><em>${p.typeLabel} · ${p.year}</em></div>`).join("")}</div>`;
   PROJECTS.forEach((p, i) => {
     const imgs = p.images.slice(0, 2);
@@ -799,7 +864,8 @@ function renderPrint() {
 }
 
 /* ── Arranque ── */
-renderSkills(); renderAlso(); renderCards(); applyFilters(false);
+renderSkills(); renderAlso(); renderCards(); renderCerts(); applyFilters(false);
+$("#certs").addEventListener("click", e => { const b = e.target.closest(".cert-shot"); if (b) openCert(+b.dataset.c); });
 addEventListener("beforeprint", renderPrint);
 
 $("#filters").addEventListener("click", e => {
@@ -826,12 +892,12 @@ ficha.addEventListener("keydown", e => {
   if (e.key === "ArrowRight") showImg(img + 1);
   if (e.key === "ArrowLeft") showImg(img - 1);
 });
-$("#f-img").onclick = () => { const m = PROJECTS[cur].images[img]; $("#l-img").src = m.src; $("#l-img").alt = m.cap; $("#l-cap").textContent = m.cap; const many = PROJECTS[cur].images.length > 1; $("#l-prev").hidden = $("#l-next").hidden = !many; lupa.showModal(); };
+$("#f-img").onclick = () => { lupaCert = false; const m = PROJECTS[cur].images[img]; $("#l-img").src = m.src; $("#l-img").alt = m.cap; $("#l-cap").textContent = m.cap; const many = PROJECTS[cur].images.length > 1; $("#l-prev").hidden = $("#l-next").hidden = !many; lupa.showModal(); };
 $("#l-close").onclick = () => lupa.close();
 $("#l-prev").onclick = () => showImg(img - 1);
 $("#l-next").onclick = () => showImg(img + 1);
 lupa.addEventListener("click", e => { if (e.target === lupa) lupa.close(); });
-lupa.addEventListener("keydown", e => { if (e.key === "ArrowRight") showImg(img + 1); if (e.key === "ArrowLeft") showImg(img - 1); });
+lupa.addEventListener("keydown", e => { if (lupaCert) return; if (e.key === "ArrowRight") showImg(img + 1); if (e.key === "ArrowLeft") showImg(img - 1); });
 
 document.querySelectorAll(".js-pdf").forEach(b => b.addEventListener("click", () => descargarPDF(b)));
 
@@ -847,5 +913,5 @@ const links = [...document.querySelectorAll(".nav-links a")];
 const io = new IntersectionObserver(es => es.forEach(en => {
   if (en.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id));
 }), { rootMargin: "-45% 0px -50% 0px" });
-["sobre-mi","habilidades","proyectos","contacto"].forEach(id => io.observe(document.getElementById(id)));
+["sobre-mi","habilidades","proyectos","certificaciones","contacto"].forEach(id => io.observe(document.getElementById(id)));
 </script>
