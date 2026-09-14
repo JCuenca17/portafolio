@@ -70,6 +70,7 @@ DESC = ("Portafolio de José Luis Cuenca Gutiérrez, estudiante de Ingeniería d
         "apps web y móviles, juegos con Unity y Phaser, extensiones de Chrome y automatización.")
 
 def head_html(projects, skills):
+    gsv = f'\n<meta name="google-site-verification" content="{cfg["google_verification"]}">' if cfg.get("google_verification") else ""
     ld_projects = []
     for p in projects:
         item = {"@type": "CreativeWork", "name": p["title"], "description": p["summary"], "about": p["kicker"],
@@ -108,7 +109,7 @@ def head_html(projects, skills):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{TITLE}</title>
 <meta name="description" content="{DESC}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="index, follow, max-image-preview:large">{gsv}
 <meta name="author" content="José Luis Cuenca Gutiérrez">
 <meta name="theme-color" content="#F5F9F9">
 <link rel="canonical" href="{URL}">
