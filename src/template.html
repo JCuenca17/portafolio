@@ -1,0 +1,823 @@
+<title>Portafolio José Luis Cuenca</title>
+<meta name="description" content="Dossier y portafolio de José Luis Cuenca Gutiérrez: proyectos, características, funcionalidades y tecnologías.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F5F9F9; --paper:#FFFFFF; --ink:#0D1B1E; --ink-2:#3A4A4F; --muted:#627479;
+  --rule:#DCE6E7; --rule-soft:#EAF1F1;
+  --cyan:#00FFE7; --teal:#007A73; --teal-2:#00A195; --teal-soft:#DEF7F4; --teal-ink:#004B46;
+  --shadow:0 1px 2px rgba(13,27,30,.05),0 8px 24px -12px rgba(13,27,30,.18);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--ground);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0;padding-inline:20px;padding-block:0}
+a{color:var(--teal)}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.015em}
+p{margin:0}
+img{max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--teal-2);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1140px;margin-inline:auto}
+.mono{font-family:var(--f-mono)}
+.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.print-doc{display:none}
+
+/* ── Navegación ── */
+.nav{position:sticky;top:0;z-index:20;margin-inline:-20px;padding-inline:20px;background:rgba(245,249,249,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.scrolled{border-bottom-color:var(--rule)}
+.nav-in{max-width:1140px;margin-inline:auto;display:flex;align-items:center;gap:24px;height:64px}
+.logo{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--ink);text-decoration:none;letter-spacing:-.03em}
+.logo span{color:var(--teal-2)}
+.nav-links{display:flex;gap:4px;margin-left:auto;list-style:none;padding:0;margin-block:0}
+.nav-links a{display:block;padding:8px 12px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:500;font-size:15px}
+.nav-links a:hover{background:var(--teal-soft);color:var(--teal-ink)}
+.nav-links a.on{color:var(--teal-ink);background:var(--teal-soft)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:11px 20px;border-radius:999px;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s}
+.btn svg{width:17px;height:17px;flex:none}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 -2px var(--ink)}
+.btn:active{transform:translateY(0);box-shadow:none}
+.btn.cy{background:var(--cyan);border-color:var(--ink);color:var(--ink)}
+.btn.sm{padding:8px 15px;font-size:14px}
+.btn[aria-busy="true"]{opacity:.7;pointer-events:none}
+
+/* ── Portada ── */
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px;align-items:center;padding-block:64px 72px}
+.hello{font-family:var(--f-display);font-weight:800;font-size:clamp(44px,7vw,84px);line-height:.98;letter-spacing:-.035em}
+.hello .hl{position:relative;white-space:nowrap;z-index:0}
+.hello .hl::after{content:"";position:absolute;left:-4px;right:-6px;bottom:.08em;height:.34em;background:var(--cyan);z-index:-1;border-radius:3px;transform-origin:left;animation:mark .9s .25s cubic-bezier(.2,.8,.2,1) both}
+@keyframes mark{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fullname{margin-top:14px;font-size:18px;color:var(--muted);font-weight:500}
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.roles span{padding:7px 14px;border-radius:999px;background:var(--paper);border:1.5px solid var(--rule);font-weight:600;font-size:15px}
+.roles span:last-child{border-color:var(--teal-2);color:var(--teal-ink);background:var(--teal-soft)}
+.hero .lead{margin-top:22px;font-size:18px;color:var(--ink-2);max-width:56ch;line-height:1.62}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:center}
+.social{display:flex;gap:6px;margin-left:6px}
+.social a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--ink);border:1.5px solid var(--rule);background:var(--paper);transition:color .15s,border-color .15s,transform .15s}
+.social a:hover{color:var(--teal);border-color:var(--teal-2);transform:translateY(-2px)}
+.social svg{width:19px;height:19px}
+.portrait{position:relative;justify-self:center;width:min(100%,360px)}
+.portrait .frame{position:relative;aspect-ratio:1;border-radius:28px;overflow:hidden;background:#fff;border:1.5px solid var(--ink);z-index:1}
+.portrait .frame img{display:block;width:100%;height:100%;object-fit:cover}
+.portrait::before{content:"";position:absolute;inset:0;transform:translate(16px,16px);border-radius:28px;background:var(--cyan);border:1.5px solid var(--ink)}
+.portrait .stamp{position:absolute;z-index:2;left:-18px;bottom:28px;background:var(--paper);border:1.5px solid var(--ink);border-radius:14px;padding:10px 14px;display:flex;gap:10px;align-items:center;font-size:13.5px;line-height:1.25;box-shadow:var(--shadow)}
+.stamp .dot{width:10px;height:10px;border-radius:50%;background:#19B35F;box-shadow:0 0 0 4px #D6F5E3;flex:none}
+.stamp b{display:block;font-weight:700}
+
+/* ── Secciones ── */
+section{padding-block:72px;border-top:1px solid var(--rule)}
+.s-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px 24px;margin-bottom:32px}
+.s-head h2{font-size:clamp(30px,4vw,44px);font-weight:800;line-height:1.05;margin-top:6px}
+.s-head p{color:var(--muted);max-width:52ch}
+
+/* Sobre mí */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+.about-text{display:grid;gap:16px;font-size:17px;color:var(--ink-2);max-width:58ch;align-content:start}
+.about-text strong{color:var(--ink)}
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
+.timeline::before{content:"";position:absolute;left:27px;top:10px;bottom:10px;width:2px;background:var(--rule)}
+.timeline li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding-block:10px;position:relative}
+.t-logo{width:56px;height:56px;border-radius:14px;background:var(--paper);border:1.5px solid var(--rule);display:grid;place-items:center;overflow:hidden;position:relative;z-index:1}
+.t-logo img{width:100%;height:100%;object-fit:contain;padding:6px}
+.t-logo.txt{font-family:var(--f-display);font-weight:800;font-size:15px;color:var(--teal-ink);background:var(--teal-soft);border-color:var(--teal-2)}
+.timeline h3{font-size:17px;font-weight:700;line-height:1.3}
+.timeline p{font-size:14.5px;color:var(--muted)}
+.timeline .when{font-family:var(--f-mono);font-size:12px;color:var(--teal)}
+
+/* Habilidades */
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
+.skill{--brand:#0D1B1E;display:grid;justify-items:center;gap:8px;padding:18px 10px 14px;border-radius:16px;background:var(--paper);border:1.5px solid var(--rule);cursor:pointer;text-align:center;transition:transform .15s,border-color .15s,box-shadow .15s}
+.skill:hover{transform:translateY(-3px);border-color:var(--brand);box-shadow:var(--shadow)}
+.skill[aria-pressed="true"]{border-color:var(--ink);background:var(--teal-soft);box-shadow:0 4px 0 -1px var(--ink)}
+.skill svg{width:34px;height:34px;fill:var(--brand)}
+.skill .mono-ico{width:34px;height:34px;border-radius:9px;background:var(--brand);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:13px}
+.skill b{font-weight:600;font-size:14.5px;line-height:1.2}
+.skill small{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.also{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:14.5px}
+.also-t{margin-right:4px}
+.also .c{display:inline-flex;align-items:center;gap:8px;padding:6px 13px 6px 8px;border-radius:999px;border:1.5px dashed var(--rule);background:var(--paper);color:var(--ink-2);font-size:14px;font-weight:500}
+.also .c svg{width:18px;height:18px;flex:none}
+
+/* Proyectos */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;border:1.5px solid var(--rule);background:var(--paper);font-weight:600;font-size:14.5px;cursor:pointer;transition:border-color .15s,background .15s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip .n{font-family:var(--f-mono);font-size:11.5px;opacity:.7}
+.chip.tech-active{background:var(--cyan);border-color:var(--ink);color:var(--ink)}
+.chip.tech-active .x{font-size:16px;line-height:1}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{display:flex;flex-direction:column;text-align:left;padding:0;background:var(--paper);border:1.5px solid var(--rule);border-radius:20px;overflow:hidden;cursor:pointer;transition:transform .2s ease,border-color .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--ink);box-shadow:0 8px 0 -2px var(--ink)}
+.card[hidden]{display:none}
+.card.enter{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{transform:scale(.97) translateY(8px)}to{transform:none}}
+.thumb{aspect-ratio:16/10;overflow:hidden;background:var(--teal-soft);border-bottom:1.5px solid var(--rule)}
+.thumb img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s ease}
+.card:hover .thumb img{transform:scale(1.04)}
+.c-body{padding:16px 18px 18px;display:grid;gap:6px;flex:1;align-content:start}
+.c-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.c-type{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--teal)}
+.c-year{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.card h3{font-size:21px;font-weight:700;line-height:1.15}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.45}
+.c-foot{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-top:1px solid var(--rule-soft)}
+.icons{display:flex;gap:6px}
+.icons span{width:26px;height:26px;border-radius:7px;background:var(--ground);display:grid;place-items:center}
+.icons svg{width:15px;height:15px}
+.icons .mi{font-family:var(--f-display);font-weight:800;font-size:9.5px;color:#fff}
+.more{font-weight:600;font-size:14px;color:var(--ink);display:flex;align-items:center;gap:6px}
+.more i{font-style:normal;transition:transform .2s}
+.card:hover .more i{transform:translateX(4px)}
+.empty{padding:40px;text-align:center;color:var(--muted);border:1.5px dashed var(--rule);border-radius:20px}
+
+/* Contacto */
+.contact{background:var(--ink);color:#fff;border-radius:28px;padding:56px 48px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:center;margin-block:72px 40px;border-top:0}
+.contact h2{font-size:clamp(32px,4.5vw,52px);font-weight:800;line-height:1.02}
+.contact h2 span{color:var(--cyan)}
+.contact p{color:#B8C7CA;margin-top:14px;max-width:44ch}
+.c-list{display:grid;gap:10px}
+.c-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;text-decoration:none;cursor:pointer;text-align:left;width:100%;transition:background .15s,border-color .15s}
+.c-item:hover{background:rgba(0,255,231,.1);border-color:var(--cyan)}
+.c-item svg{width:20px;height:20px;flex:none;color:var(--cyan)}
+.c-item small{display:block;font-family:var(--f-mono);font-size:11px;color:#8FA3A7;letter-spacing:.06em;text-transform:uppercase}
+.c-item b{font-weight:600;font-size:15.5px;word-break:break-all}
+.c-item .act{margin-left:auto;font-family:var(--f-mono);font-size:12px;color:var(--cyan);white-space:nowrap}
+footer{padding-block:0 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
+
+/* ── Ficha (modal) ── */
+dialog{border:0;padding:0;background:transparent;max-width:none;max-height:none;color:var(--ink)}
+dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
+#ficha{width:min(1160px,calc(100vw - 32px));height:min(820px,calc(100dvh - 32px))}
+#ficha[open]{display:flex}
+.sheet{flex:1;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);background:var(--paper);border-radius:24px;overflow:hidden;border:1.5px solid var(--ink);animation:sheetIn .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes sheetIn{from{transform:translateY(18px) scale(.985)}to{transform:none}}
+.gal{background:var(--ground);display:grid;grid-template-rows:minmax(0,1fr) auto auto;border-right:1.5px solid var(--rule);min-height:0}
+.stage{position:relative;min-height:0;display:grid;place-items:center;padding:24px}
+.stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;border:1px solid var(--rule);background:#fff;cursor:zoom-in;box-shadow:var(--shadow)}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);cursor:pointer;display:grid;place-items:center;transition:background .15s}
+.arrow:hover{background:var(--cyan)}
+.arrow.l{left:12px}.arrow.r{right:12px}
+.arrow svg{width:18px;height:18px}
+.zoom-hint{position:absolute;right:16px;bottom:14px;font-family:var(--f-mono);font-size:11px;background:rgba(255,255,255,.9);border:1px solid var(--rule);padding:3px 8px;border-radius:999px;color:var(--muted);pointer-events:none}
+.g-cap{padding:0 24px 8px;font-size:13.5px;color:var(--muted);min-height:1.6em}
+.strip{display:flex;gap:8px;padding:6px 24px 20px;overflow-x:auto}
+.strip button{flex:none;width:92px;aspect-ratio:16/10;border-radius:9px;overflow:hidden;border:2px solid transparent;padding:0;cursor:pointer;background:#fff;opacity:.6;transition:opacity .15s,border-color .15s}
+.strip button[aria-current="true"]{border-color:var(--ink);opacity:1}
+.strip button:hover{opacity:1}
+.strip img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.info{display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-height:0}
+.i-head{padding:22px 26px 0;display:grid;gap:4px;position:relative}
+.close{position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--rule);background:var(--paper);cursor:pointer;display:grid;place-items:center}
+.close:hover{border-color:var(--ink);background:var(--cyan)}
+.close svg{width:18px;height:18px}
+.i-head h2{font-size:clamp(26px,3vw,34px);font-weight:800;line-height:1.05;padding-right:48px;margin-top:4px}
+.i-head .kick{color:var(--muted);font-size:16px;font-weight:500}
+.i-scroll{overflow-y:auto;padding:16px 26px 20px;display:grid;gap:18px;align-content:start}
+.i-scroll .sum{font-size:15.5px;color:var(--ink-2);line-height:1.62}
+.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px;margin:0;padding:14px 16px;border-radius:14px;background:var(--ground)}
+.meta dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.meta dd{margin:1px 0 0;font-size:14px;line-height:1.4;font-weight:500}
+.i-links{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.priv{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:12px;color:#6E5A22;background:#F4EDDA;padding:6px 12px;border-radius:999px}
+.priv svg{width:13px;height:13px}
+.tabs{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--ground);width:fit-content;max-width:100%;overflow-x:auto}
+.tabs button{border:0;background:transparent;padding:8px 14px;border-radius:999px;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+.panel ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.panel li{position:relative;padding-left:22px;font-size:15px;line-height:1.5}
+.panel li::before{content:"";position:absolute;left:0;top:.45em;width:11px;height:11px;border-radius:3px;background:var(--cyan);border:1.5px solid var(--ink)}
+.panel li b{font-weight:700}
+.tech-list{display:flex;flex-wrap:wrap;gap:8px}
+.tech-list span{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--rule);font-size:14px;font-weight:500}
+.tech-list svg{width:15px;height:15px}
+.i-foot{display:flex;justify-content:space-between;gap:10px;padding:12px 18px;border-top:1px solid var(--rule)}
+.navbtn{display:flex;align-items:center;gap:8px;border:0;background:transparent;cursor:pointer;padding:8px 10px;border-radius:10px;font-weight:600;font-size:14px;color:var(--ink-2);text-align:left;max-width:48%}
+.navbtn:hover{background:var(--teal-soft);color:var(--teal-ink)}
+.navbtn svg{width:16px;height:16px;flex:none}
+.navbtn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+#lupa{width:100vw;height:100dvh}
+#lupa[open]{display:grid;place-items:center}
+#lupa img{max-width:calc(100vw - 48px);max-height:calc(100dvh - 96px);border-radius:10px;background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+#lupa .close{position:fixed;top:18px;right:18px}
+#lupa .arrow{position:fixed}
+#lupa .l-cap{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(13,27,30,.8);color:#fff;padding:6px 14px;border-radius:999px;font-size:13.5px;max-width:calc(100vw - 40px);text-align:center}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);background:var(--ink);color:#fff;padding:11px 18px;border-radius:999px;font-weight:600;font-size:14.5px;z-index:100;transition:transform .3s cubic-bezier(.2,.8,.2,1);box-shadow:var(--shadow)}
+.toast.show{transform:translate(-50%,0)}
+
+@media (max-width:1000px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{grid-template-columns:1fr;gap:48px;padding-block:44px 56px}
+  .portrait{justify-self:start;width:min(100%,300px);margin-left:4px}
+  .about{grid-template-columns:1fr;gap:32px}
+  .contact{grid-template-columns:1fr;padding:40px 28px}
+  .nav-links{display:none}
+  .nav-in .btn{margin-left:auto}
+  #ficha{height:calc(100dvh - 24px);width:calc(100vw - 24px)}
+  .sheet{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);overflow-y:auto}
+  .gal{border-right:0;border-bottom:1.5px solid var(--rule);grid-template-rows:auto auto auto}
+  .stage{height:min(46vh,380px)}
+  .info{grid-template-rows:auto auto auto}
+  .i-scroll{overflow:visible}
+}
+@media (max-width:620px){
+  body{padding-inline:16px}
+  .nav{margin-inline:-16px;padding-inline:16px}
+  .grid{grid-template-columns:1fr}
+  section{padding-block:56px}
+  .meta{grid-template-columns:1fr}
+  .portrait .stamp{left:8px;bottom:-14px}
+  .stage{height:260px;padding:14px}
+  .arrow.l{left:6px}.arrow.r{right:6px}
+  .i-head{padding:18px 18px 0}.i-scroll{padding:14px 18px 18px}
+  .contact{padding:32px 20px;border-radius:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* ── PDF ── */
+@page{size:A4;margin:12mm 12mm 13mm}
+@media print{
+  body{background:#fff;padding:0;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .screen{display:none!important}
+  .print-doc{display:block}
+  .pd-cover{display:grid;grid-template-columns:1fr 46mm;gap:10mm;align-items:start;padding-bottom:6mm;border-bottom:1.5px solid var(--ink)}
+  .pd-cover h1{font-size:30pt;font-weight:800;line-height:1;letter-spacing:-.03em}
+  .pd-cover h1 .hl{position:relative;z-index:0}
+  .pd-cover h1 .hl::after{content:"";position:absolute;left:-2px;right:-3px;bottom:.06em;height:.34em;background:var(--cyan);z-index:-1}
+  .pd-roles{margin-top:3mm;font-weight:600;font-size:12pt;color:var(--teal-ink)}
+  .pd-contact{margin-top:3mm;font-family:var(--f-mono);font-size:8.5pt;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:1mm 6mm}
+  .pd-photo{width:46mm;aspect-ratio:1;border-radius:6mm;overflow:hidden;border:1.5px solid var(--ink);box-shadow:3mm 3mm 0 var(--cyan)}
+  .pd-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .pd-lead{margin-top:4mm;font-size:10.5pt;color:var(--ink-2);line-height:1.55}
+  .pd-2{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:6mm}
+  .pd-h{font-family:var(--f-mono);font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:2.5mm}
+  .pd-tl{display:grid;gap:2.5mm}
+  .pd-tl div b{display:block;font-size:10pt}
+  .pd-tl div span{font-size:9pt;color:var(--muted)}
+  .pd-sk{display:flex;flex-wrap:wrap;gap:1.6mm}
+  .pd-sk span{border:1px solid var(--rule);border-radius:99px;padding:.6mm 2.6mm;font-size:8.8pt}
+  .pd-index{margin-top:6mm;display:grid;gap:0}
+  .pd-index div{display:grid;grid-template-columns:9mm 1fr auto;gap:3mm;padding:2mm 0;border-bottom:1px solid var(--rule-soft);font-size:9.5pt}
+  .pd-index i{font-style:normal;font-family:var(--f-mono);color:var(--teal)}
+  .pd-index em{font-style:normal;color:var(--muted);font-size:8.5pt}
+  .pd-proj{break-before:page}
+  .pd-ph{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--ink);padding-bottom:2.5mm}
+  .pd-ph h2{font-size:21pt;font-weight:800;line-height:1.05}
+  .pd-ph .t{font-family:var(--f-mono);font-size:8.5pt;color:var(--teal);text-transform:uppercase;letter-spacing:.06em}
+  .pd-kick{margin-top:1.5mm;color:var(--muted);font-size:11pt;font-weight:500}
+  .pd-imgs{display:grid;grid-template-columns:1.5fr 1fr;gap:3mm;margin-top:4mm}
+  .pd-imgs.one{grid-template-columns:1fr}
+  .pd-imgs img{width:100%;height:62mm;object-fit:cover;object-position:top;border-radius:2.5mm;border:1px solid var(--rule);display:block}
+  .pd-imgs.one img{height:72mm}
+  .pd-imgs.contain img{object-fit:contain;background:#fff}
+  .pd-sum{margin-top:4mm;font-size:10pt;color:var(--ink-2);line-height:1.55}
+  .pd-meta{margin-top:3mm;display:grid;grid-template-columns:repeat(4,1fr);gap:2mm 4mm;background:var(--ground);border-radius:2.5mm;padding:2.5mm 3.5mm}
+  .pd-meta dt{font-family:var(--f-mono);font-size:7pt;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .pd-meta dd{margin:0;font-size:8.8pt;font-weight:500;line-height:1.35}
+  .pd-lists{margin-top:4mm;display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .pd-lists ul{margin:0;padding:0 0 0 4mm;display:grid;gap:1.2mm}
+  .pd-lists li{font-size:9.3pt;line-height:1.42}
+  .pd-lists li::marker{color:var(--teal-2)}
+  .pd-tech{margin-top:4mm}
+  .pd-links{margin-top:3mm;font-family:var(--f-mono);font-size:8.5pt;color:var(--teal-ink)}
+  .pd-links a{color:var(--teal-ink);text-decoration:none}
+  .pd-note{font-size:8pt;color:var(--muted);margin-top:1.5mm}
+}
+</style>
+
+<div class="screen">
+<nav class="nav" id="nav" aria-label="Principal">
+  <div class="nav-in">
+    <a class="logo" href="#inicio">JL<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="btn sm cy js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Dossier PDF</button>
+  </div>
+</nav>
+
+<div class="wrap">
+<header class="hero" id="inicio">
+  <div>
+    <p class="label">Portafolio · 2026</p>
+    <h1 class="hello" style="margin-top:14px">Hola, soy <span class="hl">José Luis</span></h1>
+    <p class="fullname">José Luis Cuenca Gutiérrez · Arequipa, Perú</p>
+    <div class="roles"><span>Estudiante de Ingeniería de Sistemas</span><span>Desarrollador de Software</span></div>
+    <p class="lead">Construyo software web, móvil y de automatización: desde un marketplace universitario publicado en Google Play hasta un videojuego de tesis con visión computacional.</p>
+    <div class="hero-actions">
+      <button class="btn cy js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Descargar dossier PDF</button>
+      <a class="btn" href="#proyectos">Ver proyectos</a>
+      <div class="social">
+        <a href="https://github.com/JCuenca17" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="__GITHUB__"/></svg></a>
+        <a href="https://www.linkedin.com/in/josecuencag/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+        <a href="mailto:jlcg17042001@gmail.com" aria-label="Correo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="portrait">
+    <div class="frame"><img src="img/foto.jpg" alt="Fotografía de José Luis Cuenca"></div>
+    <div class="stamp"><span class="dot"></span><span><b>Practicante pre-profesional</b>Ingeniería de Sistemas · UNSA</span></div>
+  </div>
+</header>
+
+<section id="sobre-mi" aria-labelledby="t-sobre">
+  <div class="s-head"><div><p class="label">Sobre mí</p><h2 id="t-sobre">Ingeniería, código y problemas reales</h2></div></div>
+  <div class="about">
+    <div class="about-text">
+      <p>Soy estudiante de <strong>Ingeniería de Sistemas en la Universidad Nacional de San Agustín de Arequipa (UNSA)</strong>, con formación Front-End en el programa Oracle Next Education.</p>
+      <p>Desarrollo aplicaciones web y móviles, extensiones de navegador que automatizan tareas repetitivas y prototipos que combinan juego, visión computacional y aprendizaje automático. Trabajo con metodologías ágiles, control de versiones y pruebas de calidad.</p>
+      <p>Me interesa especializarme en desarrollo de software y gestión de proyectos tecnológicos, aportando soluciones que se usen de verdad.</p>
+    </div>
+    <ol class="timeline" aria-label="Trayectoria">
+      <li><span class="t-logo"><img src="img/logo-yofc.png" alt=""></span><div><p class="when">Ene 2026 – Presente</p><h3>Practicante Pre-Profesional</h3><p>YOFC Perú SAC</p></div></li>
+      <li><span class="t-logo"><img src="img/logo-unsa.jpg" alt=""></span><div><p class="when">2018 – Presente</p><h3>Ingeniería de Sistemas</h3><p>Universidad Nacional de San Agustín</p></div></li>
+      <li><span class="t-logo"><img src="img/logo-one.png" alt=""></span><div><p class="when">2022 – 2023</p><h3>Desarrollo Front-end</h3><p>Oracle Next Education · Oracle + Alura Latam</p></div></li>
+      <li><span class="t-logo"><img src="img/logo-hkust.png" alt=""></span><div><p class="when">2021</p><h3>Front-End Web UI Frameworks: Bootstrap 4</h3><p>HKUST + Coursera</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="habilidades" aria-labelledby="t-hab">
+  <div class="s-head"><div><p class="label">Habilidades</p><h2 id="t-hab">Tecnologías que uso</h2></div><p>Toca una tecnología para ver los proyectos donde la usé.</p></div>
+  <div class="skills" id="skills"></div>
+  <div class="also" id="also"><span class="also-t">También con formación en</span></div>
+</section>
+
+<section id="proyectos" aria-labelledby="t-proy">
+  <div class="s-head"><div><p class="label">Proyectos</p><h2 id="t-proy">Lo que he construido</h2></div><p>Abre cualquier proyecto para ver capturas, características, funcionalidades y tecnologías.</p></div>
+  <div class="filters" id="filters" role="toolbar" aria-label="Filtrar proyectos"></div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>No hay proyectos con ese filtro.</p>
+</section>
+
+<section class="contact" id="contacto" aria-labelledby="t-cont">
+  <div>
+    <p class="label" style="color:var(--cyan)">Contacto</p>
+    <h2 id="t-cont" style="margin-top:8px">¿Conversamos sobre tu <span>próximo proyecto</span>?</h2>
+    <p>Estoy abierto a oportunidades de desarrollo de software y a colaborar en proyectos reales.</p>
+    <div style="margin-top:22px"><button class="btn cy js-pdf" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>Descargar dossier PDF</button></div>
+  </div>
+  <div class="c-list">
+    <button class="c-item" type="button" id="copyMail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span><small>Email</small><b>jlcg17042001@gmail.com</b></span><span class="act">Copiar</span></button>
+    <a class="c-item" href="https://www.linkedin.com/in/josecuencag/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span><small>LinkedIn</small><b>in/josecuencag</b></span><span class="act">Abrir ↗</span></a>
+    <a class="c-item" href="https://github.com/JCuenca17" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="__GITHUB__"/></svg><span><small>GitHub</small><b>JCuenca17</b></span><span class="act">Abrir ↗</span></a>
+  </div>
+</section>
+
+<footer><span>© 2026 José Luis Cuenca Gutiérrez</span><span>Los proyectos con código privado pueden mostrarse bajo solicitud.</span></footer>
+</div>
+
+<dialog id="ficha" aria-labelledby="f-title">
+  <div class="sheet">
+    <div class="gal">
+      <div class="stage">
+        <img id="f-img" alt="">
+        <button class="arrow l" type="button" id="g-prev" aria-label="Captura anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="arrow r" type="button" id="g-next" aria-label="Captura siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        <span class="zoom-hint">Clic para ampliar</span>
+      </div>
+      <p class="g-cap" id="f-cap"></p>
+      <div class="strip" id="f-strip"></div>
+    </div>
+    <div class="info">
+      <div class="i-head">
+        <p class="label" id="f-type"></p>
+        <h2 id="f-title"></h2>
+        <p class="kick" id="f-kick"></p>
+        <button class="close" type="button" id="f-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="i-scroll">
+        <p class="sum" id="f-sum"></p>
+        <dl class="meta" id="f-meta"></dl>
+        <div class="i-links" id="f-links"></div>
+        <div>
+          <div class="tabs" role="tablist" aria-label="Detalle del proyecto">
+            <button role="tab" type="button" id="tab-car" aria-controls="pan" aria-selected="true" data-k="car">Características</button>
+            <button role="tab" type="button" id="tab-fun" aria-controls="pan" aria-selected="false" data-k="fun">Funcionalidades</button>
+            <button role="tab" type="button" id="tab-tec" aria-controls="pan" aria-selected="false" data-k="tec">Tecnologías</button>
+          </div>
+          <div class="panel" id="pan" role="tabpanel" style="margin-top:14px"></div>
+        </div>
+      </div>
+      <div class="i-foot">
+        <button class="navbtn" type="button" id="p-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span></span></button>
+        <button class="navbtn" type="button" id="p-next" style="justify-content:flex-end"><span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="lupa" aria-label="Captura ampliada">
+  <img id="l-img" alt="">
+  <button class="close" type="button" id="l-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="arrow l" type="button" id="l-prev" aria-label="Anterior" style="left:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <button class="arrow r" type="button" id="l-next" aria-label="Siguiente" style="right:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+  <p class="l-cap" id="l-cap"></p>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<div class="print-doc" id="print-doc"></div>
+
+<script>
+const ICONS = __ICONS__;
+const PDF_FILE = "Dossier-JoseLuis-Cuenca.pdf";
+
+const TECH = {
+  html:{name:"HTML5",icon:"html5"}, css:{name:"CSS3",icon:"css"}, js:{name:"JavaScript",icon:"javascript"},
+  ts:{name:"TypeScript",icon:"typescript"}, react:{name:"React Native",icon:"react"},
+  python:{name:"Python",icon:"python"}, phaser:{name:"Phaser 3",mono:"Ph",hex:"8A3FFC"},
+  sklearn:{name:"scikit-learn",icon:"scikitlearn"}, three:{name:"three.js",icon:"threedotjs"},
+  firebase:{name:"Firebase",icon:"firebase"}, expo:{name:"Expo",icon:"expo"},
+  chrome:{name:"Chrome Extensions",icon:"googlechrome"}, vite:{name:"Vite",icon:"vite"},
+  vercel:{name:"Vercel",icon:"vercel"}, vdm:{name:"VDM++",mono:"VDM",hex:"3552A0"},
+  django:{name:"Django",icon:"django"}, mysql:{name:"MySQL",icon:"mysql"}, bootstrap:{name:"Bootstrap",icon:"bootstrap"},
+  unity:{name:"Unity",icon:"unity"}, csharp:{name:"C#",mono:"C#",hex:"68217A"}
+};
+const SKILL_ORDER = ["html","css","js","ts","react","python","django","csharp","unity","phaser","sklearn","three","bootstrap","mysql","firebase","expo","chrome","vercel","vdm"];
+
+const PROJECTS = [
+  { id:"boehm", title:"Rescate en la Naturaleza", kicker:"Sistema predictivo gamificado para el test Boehm-3 Preescolar",
+    type:"juego", typeLabel:"Juego · IA", year:"2026", thumb:"img/boehm-nivel.jpg", tech:["js","phaser","python","sklearn","html","css"],
+    blurb:"Videojuego de tesis que evalúa conceptos básicos en niños de 5 años mientras juegan.",
+    images:[
+      {src:"img/boehm-nivel.jpg",cap:"Nivel de la isla Selva con el panel de detección de afecto en vivo."},
+      {src:"img/boehm-nivel2.jpg",cap:"Nivel del océano: cada isla tiene su propio bioma."},
+      {src:"img/boehm-portada.jpg",cap:"Registro anonimizado del participante antes de empezar."}],
+    summary:"Videojuego para niños de 5 años que detecta de forma temprana su nivel de comprensión de conceptos básicos relacionales (arriba, entre, antes…) mientras juegan, sin que la evaluación se sienta como examen. Combina el movimiento del ratón, la expresión facial y el desempeño con un módulo de apoyo graduado que no altera la dificultad del ítem.",
+    meta:[["Contexto","Tesis de Ingeniería de Sistemas, UNSA"],["Periodo","Jul 2026 – en curso"],["Rol","Co-autor · diseño e implementación completa"],["Historial","31 commits · autor único del código"]],
+    links:[], priv:true,
+    car:["<b>Evaluación encubierta</b> (<i>stealth assessment</i>): se mide mientras el niño juega.","<b>Captura multimodal</b> de movimiento del ratón, expresión facial y desempeño por concepto.","<b>Andamiaje adaptativo</b>: ayuda graduada sin cambiar la dificultad.","<b>Privacidad</b>: el reconocimiento facial corre en el navegador, sin conexión y sin enviar vídeo.","<b>Motor guiado por datos</b>: los niveles se definen en JSON sin tocar código."],
+    fun:["26 niveles, uno por concepto del test, repartidos en islas con bioma propio.","Calibración inicial con rompecabezas y dos mecánicas de interacción.","Detección de frustración, desatención y engagement por webcam.","Narración por voz y sonidos para niños que aún no leen.","Dashboard del docente y exportación de la sesión en JSON.","Pipeline en Python: descriptores de trayectoria, fusión y clasificación con validación cruzada."],
+    tec:["JavaScript","Phaser 3","face-api.js","Web Speech API","Web Audio API","Python","NumPy · pandas · SciPy","scikit-learn","PlantUML","Git"] },
+
+  { id:"haus", title:"The Haus", kicker:"Landing y aplicación de reservas con plano 3D interactivo",
+    type:"web", typeLabel:"Web", year:"2026", thumb:"img/haus-thumb.jpg", tech:["js","three","html","css","vercel"],
+    blurb:"Reserva de puestos de coworking directamente sobre un plano 3D del local.",
+    images:[
+      {src:"img/thehaus-plano.jpg",cap:"Plano 3D interactivo con calendario, turnos y ocupación por puesto."},
+      {src:"img/thehaus-landing.jpg",cap:"Portada de la landing del coworking."},
+      {src:"img/thehaus-zonas.jpg",cap:"Sección de zonas: cada espacio con su propósito."}],
+    summary:"Sitio de marketing y aplicación web para reservar puestos en un coworking de Arequipa. La reserva se hace sobre un plano tridimensional del local: cada escritorio, sala y zona muestra su disponibilidad para la fecha y el turno elegidos, y se puede rotar, acercar y seleccionar con el ratón.",
+    meta:[["Contexto","Coworking en Arequipa · proyecto independiente"],["Periodo","Jun – Jul 2026"],["Rol","Frontend y arquitectura"],["Historial","36 commits"]],
+    links:[{label:"Abrir el plano 3D",href:"https://thehaus-pink.vercel.app/app/",primary:true},{label:"Ver landing",href:"https://thehaus-pink.vercel.app/"}], priv:true,
+    car:["<b>Plano 3D interactivo</b> con mobiliario modelado y controles de zoom, giro y pantalla completa.","<b>Estado por puesto</b> con colores: libre, reservado por ti u ocupado.","<b>Descuentos por volumen</b>: 5–9 días −10 %, 10–19 días −15 %, 20 o más −25 %.","<b>Pasarela de pago simulada</b> con resultados aprobado, rechazado y caducado.","<b>PWA</b> instalable, sin dependencias externas: todo alojado en el sitio.","Backend en Supabase diseñado y documentado para la siguiente fase."],
+    fun:["Calendario de próximos días con turnos mañana, tarde y día completo.","Reserva de varios días que recalcula el descuento al añadir o quitar fechas.","Registro e inicio de sesión antes de acceder al plano.","Sección “Mis reservas” para revisar lo contratado.","Landing con beneficios, zonas, mapa del local y agenda de visitas.","Aviso permanente de modo demostración: ningún pago es real."],
+    tec:["HTML5","CSS3","JavaScript (módulos ES)","three.js","SVG","Service Worker","Vercel","Supabase (diseño)"] },
+
+  { id:"market", title:"UNSA Market", kicker:"Marketplace móvil de la comunidad universitaria",
+    type:"movil", typeLabel:"Móvil", year:"2026", thumb:"img/market-phones.jpg", tech:["react","ts","expo","firebase"],
+    blurb:"App Android publicada en Google Play para comprar y vender entre estudiantes.",
+    images:[
+      {src:"img/landing-unsa-app.jpg",cap:"Pantallas reales: acceso institucional, feed y detalle con reseñas del vendedor."},
+      {src:"img/market-phones.jpg",cap:"Detalle de las pantallas de la app."}],
+    summary:"Aplicación Android publicada en Google Play para que los estudiantes de la UNSA compren, vendan y ofrezcan servicios entre ellos con identidad verificada y reputación visible. Ordena el comercio estudiantil que antes vivía en grupos de WhatsApp.",
+    meta:[["Contexto","Proyecto de curso, UNSA · equipo de 4"],["Periodo","Abr – Jul 2026"],["Rol","Desarrollador principal (≈96 % del código)"],["Historial","29 de 33 commits"]],
+    links:[{label:"Descargar en Google Play",href:"https://play.google.com/store/apps/details?id=com.unsa.market",primary:true},{label:"Repositorio",href:"https://github.com/JCuenca17/unsa-market"}], priv:false,
+    car:["<b>Acceso con correo institucional</b> @unsa.edu.pe.","<b>Reputación del vendedor</b> con valoraciones por estrellas.","<b>Notificaciones push</b> con manejo de errores en Expo Go.","<b>Modo invitado</b> y aceptación de términos y condiciones.","Build y distribución con EAS hacia Google Play."],
+    fun:["Feed con pestañas de productos y servicios y categorías dinámicas.","Publicaciones destacadas en la parte superior del inicio.","Crear y editar publicaciones con fotos desde galería o cámara.","Mis publicaciones, mis compras y perfil público del vendedor.","Reseñas dirigidas al vendedor tras cada compra.","Completar y editar el perfil, con foto."],
+    tec:["React Native 0.81","Expo SDK 54","TypeScript","React 19","React Navigation","Firebase Auth","Cloud Firestore","Firebase Storage","Expo Notifications","EAS Build"] },
+
+  { id:"landing", title:"Landing UNSA Market", kicker:"Sitio promocional orientado a descargas",
+    type:"web", typeLabel:"Web", year:"2026", thumb:"img/landing-thumb.jpg", tech:["html","css","js","vercel"],
+    blurb:"Página de aterrizaje que presenta la app y lleva a la descarga en Google Play.",
+    images:[
+      {src:"img/landing-unsa-hero.jpg",cap:"Portada con llamada a la acción hacia Google Play."},
+      {src:"img/landing-unsa-caracteristicas.jpg",cap:"Seis características de la app en tarjetas."},
+      {src:"img/landing-unsa-app.jpg",cap:"Sección “La app en acción” con pantallas reales."}],
+    summary:"Página de aterrizaje que presenta la app, explica el problema que resuelve y lleva a la descarga en Google Play. Hecha sin frameworks, con foco en rendimiento, diseño responsive y animaciones ligeras.",
+    meta:[["Contexto","Complemento de UNSA Market"],["Periodo","2026"],["Rol","Desarrollador"]],
+    links:[{label:"Ver sitio",href:"https://unsamarket.vercel.app/",primary:true}], priv:true,
+    car:["<b>Diseño responsive</b> con menú de navegación plegable.","<b>Animaciones al hacer scroll</b> y contadores animados.","<b>Carrusel continuo</b> de categorías.","Tipografía con Sora e Inter."],
+    fun:["Comparativa del problema actual frente a la solución.","Seis características y mockups con pantallas reales de la app.","Recorrido de uso en seis pasos, de la búsqueda a la valoración.","Planes Gratis y Pro, preguntas frecuentes y enlace de descarga."],
+    tec:["HTML5","CSS3","JavaScript","Google Fonts","Vercel"] },
+
+  { id:"freelance", title:"Perfil freelance", kicker:"Landing de servicios de desarrollo web y automatización",
+    type:"web", typeLabel:"Web", year:"2026", thumb:"img/freelance-hero.jpg", tech:["html","css","js","vercel"],
+    blurb:"Mi página para captar clientes: paquete, precios, módulos y términos claros.",
+    images:[
+      {src:"img/freelance-hero.jpg",cap:"Portada con propuesta de valor, contacto por WhatsApp y cifras del servicio."},
+      {src:"img/freelance-servicios.jpg",cap:"Paquete principal: qué incluye y qué no incluye, con precio fijo."},
+      {src:"img/freelance-modulos.jpg",cap:"Módulos opcionales para escalar el proyecto."},
+      {src:"img/freelance-terminos.jpg",cap:"Términos y condiciones de trabajo en tarjetas."},
+      {src:"img/freelance-movil.jpg",cap:"Versión móvil con menú desplegable."}],
+    summary:"Landing page con la que ofrezco mis servicios de desarrollo web y automatización. Presenta el paquete principal con precio fijo, lo que incluye y lo que no, módulos opcionales y los términos de trabajo, y lleva al cliente directo a WhatsApp. También puede guardarse como propuesta en PDF desde el navegador.",
+    meta:[["Contexto","Perfil profesional freelance"],["Periodo","Jun 2026"],["Rol","Diseño, contenido y desarrollo"]],
+    links:[__FREELANCE_LINKS__], priv:false,
+    car:["<b>Contacto directo por WhatsApp</b> desde el menú, la portada y el pie.","<b>Propuesta en PDF</b>: estilos de impresión propios para guardar la página como documento.","<b>Animaciones al hacer scroll</b> con aparición escalonada de tarjetas.","<b>Responsive</b> con menú hamburguesa en celular.","Estética de cuaderno: fondo punteado y cifras manuscritas."],
+    fun:["Cifras clave del servicio: plazo de entrega, precio base y soporte.","Paquete principal con columnas de incluye y no incluye.","Módulos opcionales con precio: mini-CRM, panel de autogestión y secciones extra.","Seis términos de trabajo: materiales, plazos, revisiones, pagos, comunicación y propiedad.","Enlace a este portafolio para ver proyectos realizados."],
+    tec:["HTML5","CSS3","JavaScript","Font Awesome","Google Fonts","Vercel"] },
+
+  { id:"pro", title:"PracticantePro", kicker:"Extensión de Chrome que convierte fotos de WhatsApp en registros automáticos",
+    type:"extension", typeLabel:"Extensión", year:"2026", thumb:"img/pro-mock.jpg", tech:["chrome","js"],
+    blurb:"Captura fotos por remitente en WhatsApp Web y las carga en bloque con un piloto automático.",
+    images:[{src:"img/pro-mock.jpg",cap:"Ilustración de la interfaz con datos ficticios: captura en WhatsApp Web, caché local y panel con piloto automático."}],
+    summary:"Los practicantes reciben por WhatsApp las fotos de evidencia de cada centro y antes debían subirlas una por una en la aplicación web de registro. La extensión recolecta las fotos por remitente, las guarda en la caché del navegador y un piloto automático las carga en bloque en el registro de cada centro. La desarrollé para automatizar mi trabajo y el de mis compañeros de prácticas de otras regiones.",
+    meta:[["Contexto","Prácticas pre-profesionales · uso propio y de practicantes de otras regiones"],["Periodo","Feb – Jun 2026"],["Rol","Desarrollador único"],["Estado","En uso diario"]],
+    links:[], priv:true, note:"Ilustración con datos ficticios.",
+    car:["<b>Dos módulos</b>: extracción en WhatsApp Web y carga en la aplicación de registro, conectados por la caché local.","<b>Piloto automático (RPA)</b> que abre cada registro, pone la fecha, adjunta las fotos y guarda.","<b>Pausa inteligente</b> para revisión humana si un centro tiene varias fotos o un estado distinto de operativo.","<b>Sin duplicados</b>: recuerda las imágenes ya capturadas en la sesión.","Panel lateral plegable que no tapa la aplicación."],
+    fun:["Modo de captura: un clic en un chat reúne sus fotos y detecta el nombre del remitente.","Marcado visual “CAPTURADO” y contador de imágenes en cola.","Caché agrupada por centro, ordenada de menos a más fotos.","Fecha de evidencia configurable y controles iniciar, continuar y detener.","Cronómetro de actividades diarias con cantidad y comentario por tarea."],
+    tec:["JavaScript","Chrome Extensions (Manifest V3)","Content Scripts","chrome.storage","Canvas API","DataTransfer API","RPA"] },
+
+  { id:"labne", title:"Maestro de Equipos", kicker:"Aplicación web para gestionar equipos de laboratorio y su mantenimiento",
+    type:"web", typeLabel:"Web", year:"2024", thumb:"img/labne-maestro.jpg", tech:["python","django","mysql","bootstrap","html","css","js"],
+    blurb:"CRUD en Django con login, filtros, estados de registro y versión instalable (PWA).",
+    images:[
+      {src:"img/labne-maestro.jpg",cap:"Listado del maestro de equipos con búsqueda, filtros y estado de cada registro."},
+      {src:"img/labne-movil.jpg",cap:"En el celular la tabla se convierte en tarjetas."},
+      {src:"img/labne-detalle.jpg",cap:"Detalle de un equipo con su taller y tipo, y acciones de editar o eliminar."},
+      {src:"img/labne-crear.jpg",cap:"Formulario para registrar un equipo nuevo."},
+      {src:"img/labne-login.jpg",cap:"Inicio de sesión: todas las tablas están protegidas."}],
+    summary:"Aplicación web para administrar el inventario de equipos de laboratorio junto con sus tablas relacionadas, talleres de mantenimiento y tipos de equipo. Tiene acceso con usuario, búsqueda, filtros combinados y control del estado de cada registro, y puede instalarse como aplicación.",
+    meta:[["Periodo","Dic 2024"],["Rol","Desarrollador único"],["Historial","42 commits"]],
+    links:[{label:"Repositorio",href:"https://github.com/JCuenca17/lab_ne",primary:true}], priv:false, note:"Capturas con datos de ejemplo.",
+    car:["<b>Códigos automáticos</b> con prefijo por tabla (ME_00001, TM_…, TE_…) generados con señales de Django.","<b>Borrado lógico</b> con tres estados: activo, inactivo y eliminado.","<b>CRUD genérico</b>: las mismas vistas sirven para las tres tablas, parametrizadas por modelo.","<b>PWA</b> instalable con service worker y página sin conexión.","<b>Responsive</b>: tabla en escritorio y tarjetas en celular.","Rutas protegidas con inicio de sesión."],
+    fun:["Iniciar y cerrar sesión.","Listar, crear, editar y ver el detalle de equipos, talleres y tipos.","Eliminar, activar y desactivar registros.","Buscar por código, nombre o ubicación.","Filtrar por estado, taller de mantenimiento y tipo de equipo.","Relacionar cada equipo con su taller y su tipo."],
+    tec:["Python","Django","MySQL","PyMySQL","Bootstrap 5","Bootstrap Icons","HTML5","CSS3","JavaScript","django-pwa","Service Worker"] },
+
+  { id:"yachay", title:"Yachay", kicker:"Juego educativo para aprender vocabulario en quechua",
+    type:"juego", typeLabel:"Juego", year:"2024", thumb:"img/yachay-1.jpg", tech:["unity","csharp"],
+    blurb:"Atrapa con la canasta la traducción correcta en quechua. Jugable en el navegador.",
+    images:[
+      {src:"img/yachay-0.jpg",cap:"Pantalla de inicio."},
+      {src:"img/yachay-1.jpg",cap:"Partida: la pista aparece en el libro y las palabras en quechua caen."},
+      {src:"img/yachay-3.jpg",cap:"Pistas con números: “Tres” → Kinsa."},
+      {src:"img/yachay-4.jpg",cap:"Pantalla de victoria al completar la ronda."},
+      {src:"img/yachay-2.jpg",cap:"Game over al quedarse sin vidas."}],
+    summary:"Juego hecho en Unity para aprender palabras en quechua jugando. El libro muestra una pista en español, con texto o imagen, y el jugador mueve la canasta para atrapar la traducción correcta entre las palabras en quechua que caen, antes de quedarse sin vidas. Está publicado en itch.io y se juega directamente en el navegador.",
+    meta:[["Contexto","Curso de Desarrollo de Videojuegos"],["Periodo","Dic 2024"],["Publicado en","itch.io"],["Plataforma","Navegador (HTML5 / WebGL)"]],
+    links:[{label:"Jugar en itch.io",href:"https://abduzcan17.itch.io/yachay",primary:true}], priv:false,
+    car:["<b>Aprendizaje por juego</b>: vocabulario en quechua con pistas en español.","<b>Vidas y puntaje</b> visibles durante toda la partida.","<b>Pantallas de victoria y game over</b> con opción de volver a jugar.","<b>Build WebGL</b>: se juega en el navegador sin instalar nada."],
+    fun:["Pantalla de inicio con botón Play.","Pistas en texto (números) y en imagen (partes del cuerpo).","Mover la canasta para atrapar la palabra correcta.","Pérdida de vida al atrapar una palabra incorrecta.","Contador de puntos y reinicio de la partida."],
+    tec:["Unity","C#","WebGL","itch.io"] },
+
+  { id:"afev", title:"Monitoreo de temperatura", kicker:"Especificación formal y validación en VDM++",
+    type:"formal", typeLabel:"Métodos formales", year:"2024", thumb:"img/afev-code.jpg", tech:["vdm"],
+    blurb:"Modelo formal de alarmas para almacenes de congelados, publicado como artículo.",
+    images:[
+      {src:"img/afev-code.jpg",cap:"Fragmento de la especificación: invariante del sensor y lógica de alarmas."},
+      {src:"img/afev-p0.jpg",cap:"Primera página del artículo académico."},
+      {src:"img/afev-p3.jpg",cap:"Arquitectura del sistema y diagrama de clases en el artículo."}],
+    summary:"Modelo formal de un sistema que vigila la temperatura de almacenes de productos perecederos congelados y dispara alarmas fuera del rango seguro. Se especificó con invariantes y operaciones verificables y se validó con el intérprete VDM Toolbox, como parte de un artículo académico.",
+    meta:[["Contexto","Proyecto de curso, UNSA · artículo grupal"],["Periodo","Nov 2024"],["Rol","Autor de toda la especificación y la validación"]],
+    links:[{label:"Repositorio",href:"https://github.com/JCuenca17/proyecto1-afev",primary:true}], priv:false,
+    car:["<b>Modelo orientado a objetos</b> con las clases Sensor, Alarm y System.","<b>Invariantes</b>: rango físico del sensor (−50 a 50 °C) y alarmas siempre con mensaje.","<b>Tipos enumerados</b> para el riesgo: temperatura alta o baja.","Diagrama de clases y arquitectura en UML."],
+    fun:["Cinco requisitos formalizados: recopilar datos, detectar valores fuera de rango, activar alarmas, alcance del sensor y restablecimiento.","Alarma de alta temperatura desde −18 °C y de baja desde −23 °C.","Restablecimiento de alarmas cuando la lectura vuelve al rango.","Clase de pruebas y script de casos validados en VDM Toolbox."],
+    tec:["VDM++","VDM Toolbox","Métodos formales","PlantUML","UML"] },
+
+];
+
+const TYPES = [["todos","Todos"],["web","Web"],["movil","Móvil"],["juego","Juegos"],["extension","Extensión"],["formal","Métodos formales"]];
+
+/* ── utilidades ── */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function techIcon(key, colored = true) {
+  const t = TECH[key]; if (!t) return "";
+  if (t.icon && ICONS[t.icon]) {
+    const hex = ICONS[t.icon].hex || "0D1B1E";
+    return `<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#${colored ? hex : "0D1B1E"}"><path d="${ICONS[t.icon].d}"/></svg>`;
+  }
+  return `<span class="mi" style="background:#${t.hex};width:100%;height:100%;border-radius:7px;display:grid;place-items:center">${t.mono}</span>`;
+}
+function toast(msg) {
+  const el = $("#toast"); el.textContent = msg; el.classList.add("show");
+  clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 2600);
+}
+
+
+const ALSO = [
+  {name:"Java", icon:"openjdk", hex:"E76F00"},
+  {name:"PostgreSQL", icon:"postgresql"},
+  {name:"Git", icon:"git"},
+  {name:"GitHub", icon:"github"},
+  {name:"Metodologías ágiles", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>'},
+  {name:"Pruebas de software", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>'}
+];
+function renderAlso() {
+  $("#also").insertAdjacentHTML("beforeend", ALSO.map(a => {
+    const ico = a.svg ? a.svg : `<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#${a.hex || ICONS[a.icon].hex}"><path d="${ICONS[a.icon].d}"/></svg>`;
+    return `<span class="c">${ico}${esc(a.name)}</span>`;
+  }).join(""));
+}
+
+/* ── Habilidades ── */
+const state = { type: "todos", tech: null };
+function renderSkills() {
+  $("#skills").innerHTML = SKILL_ORDER.map(k => {
+    const t = TECH[k]; const n = PROJECTS.filter(p => p.tech.includes(k)).length;
+    const hex = t.icon && ICONS[t.icon] ? ICONS[t.icon].hex : t.hex;
+    const ico = t.icon && ICONS[t.icon] ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONS[t.icon].d}"/></svg>` : `<span class="mono-ico">${t.mono}</span>`;
+    return `<button class="skill" type="button" data-tech="${k}" aria-pressed="false" style="--brand:#${hex}">${ico}<b>${esc(t.name)}</b><small>${n} proyecto${n === 1 ? "" : "s"}</small></button>`;
+  }).join("");
+  $("#skills").addEventListener("click", e => {
+    const b = e.target.closest(".skill"); if (!b) return;
+    state.tech = state.tech === b.dataset.tech ? null : b.dataset.tech;
+    state.type = "todos";
+    applyFilters(true);
+    if (state.tech) document.getElementById("proyectos").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  });
+}
+
+/* ── Filtros y tarjetas ── */
+function renderFilters() {
+  const f = $("#filters");
+  let html = TYPES.map(([k, l]) => {
+    const n = k === "todos" ? PROJECTS.length : PROJECTS.filter(p => p.type === k).length;
+    return `<button class="chip" type="button" data-type="${k}" aria-pressed="${state.type === k && !state.tech}">${l} <span class="n">${n}</span></button>`;
+  }).join("");
+  if (state.tech) html += `<button class="chip tech-active" type="button" data-clear="1" aria-label="Quitar filtro ${esc(TECH[state.tech].name)}">${esc(TECH[state.tech].name)} <span class="x" aria-hidden="true">×</span></button>`;
+  f.innerHTML = html;
+}
+function renderCards() {
+  $("#grid").innerHTML = PROJECTS.map((p, i) => `
+    <button class="card" type="button" data-i="${i}" aria-label="Abrir ${esc(p.title)}">
+      <div class="thumb"><img src="${p.thumb}" alt="" loading="eager"></div>
+      <div class="c-body">
+        <div class="c-top"><span class="c-type">${p.typeLabel}</span><span class="c-year">${p.year}</span></div>
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(p.blurb)}</p>
+      </div>
+      <div class="c-foot"><span class="icons">${p.tech.slice(0, 4).map(k => `<span title="${esc(TECH[k].name)}">${techIcon(k)}</span>`).join("")}</span><span class="more">Ver proyecto <i>→</i></span></div>
+    </button>`).join("");
+}
+function applyFilters(animate) {
+  let shown = 0;
+  document.querySelectorAll(".card").forEach(c => {
+    const p = PROJECTS[c.dataset.i];
+    const ok = (state.type === "todos" || p.type === state.type) && (!state.tech || p.tech.includes(state.tech));
+    c.hidden = !ok; if (ok) shown++;
+    if (ok && animate) { c.classList.remove("enter"); void c.offsetWidth; c.classList.add("enter"); }
+  });
+  $("#empty").hidden = shown > 0;
+  document.querySelectorAll(".skill").forEach(s => s.setAttribute("aria-pressed", String(s.dataset.tech === state.tech)));
+  renderFilters();
+}
+
+/* ── Ficha ── */
+const ficha = $("#ficha"), lupa = $("#lupa");
+let cur = 0, img = 0, tab = "car";
+function visibleOrder() { return [...document.querySelectorAll(".card:not([hidden])")].map(c => +c.dataset.i); }
+function openProject(i) {
+  cur = i; img = 0; tab = "car";
+  const p = PROJECTS[i];
+  $("#f-type").textContent = `${p.typeLabel} · ${p.year}`;
+  $("#f-title").textContent = p.title;
+  $("#f-kick").textContent = p.kicker;
+  $("#f-sum").textContent = p.summary;
+  $("#f-meta").innerHTML = p.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
+  $("#f-links").innerHTML = p.links.map(l => `<a class="btn sm ${l.primary ? "cy" : ""}" href="${l.href}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("") +
+    (p.priv ? `<span class="priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Código privado</span>` : "");
+  $("#f-strip").innerHTML = p.images.map((m, k) => `<button type="button" data-k="${k}" aria-label="Captura ${k + 1}"><img src="${m.src}" alt=""></button>`).join("");
+  const many = p.images.length > 1;
+  $("#g-prev").hidden = $("#g-next").hidden = $("#f-strip").hidden = !many;
+  const ord = visibleOrder(), pos = ord.indexOf(i);
+  const prev = ord[(pos - 1 + ord.length) % ord.length], next = ord[(pos + 1) % ord.length];
+  $("#p-prev span").textContent = PROJECTS[prev].title; $("#p-prev").dataset.i = prev;
+  $("#p-next span").textContent = PROJECTS[next].title; $("#p-next").dataset.i = next;
+  $("#p-prev").hidden = $("#p-next").hidden = ord.length < 2;
+  showImg(0); showTab("car");
+  $(".i-scroll").scrollTop = 0;
+  if (!ficha.open) ficha.showModal();
+}
+function showImg(k) {
+  const p = PROJECTS[cur]; const n = p.images.length; img = (k + n) % n;
+  const m = p.images[img];
+  $("#f-img").src = m.src; $("#f-img").alt = m.cap; $("#f-cap").textContent = m.cap;
+  document.querySelectorAll("#f-strip button").forEach(b => b.setAttribute("aria-current", String(+b.dataset.k === img)));
+  if (lupa.open) { $("#l-img").src = m.src; $("#l-img").alt = m.cap; $("#l-cap").textContent = m.cap; }
+}
+function showTab(k) {
+  tab = k; const p = PROJECTS[cur];
+  document.querySelectorAll(".tabs [role=tab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.k === k)));
+  $("#pan").setAttribute("aria-labelledby", "tab-" + k);
+  $("#pan").innerHTML = k === "tec"
+    ? `<div class="tech-list">${p.tec.map(t => `<span>${esc(t)}</span>`).join("")}</div>`
+    : `<ul>${p[k].map(x => `<li>${x}</li>`).join("")}</ul>`;
+}
+
+/* ── PDF ── */
+const downloadsReady = (window.claude && typeof window.claude.use === "function") ? window.claude.use("downloads").catch(() => null) : Promise.resolve(null);
+async function descargarPDF(btn) {
+  btn.setAttribute("aria-busy", "true");
+  try {
+    const dl = await downloadsReady;
+    if (!dl) { const a = document.createElement("a"); a.href = PDF_FILE; a.download = PDF_FILE; document.body.appendChild(a); a.click(); a.remove(); return; }
+    const res = await fetch(PDF_FILE); if (!res.ok) throw { code: "fetch" };
+    await dl.save({ filename: PDF_FILE, data: await res.blob() });
+    toast("Dossier descargado");
+  } catch (e) {
+    if (e && e.code === "declined") toast("Descarga cancelada");
+    else if (e && e.code === "rate_limited") toast("Ya hay una descarga esperando confirmación");
+    else { window.open(PDF_FILE, "_blank", "noopener"); }
+  } finally { btn.removeAttribute("aria-busy"); }
+}
+
+/* ── Documento para imprimir (PDF) ── */
+function renderPrint() {
+  const skills = SKILL_ORDER.map(k => TECH[k].name).concat(ALSO.map(a => a.name));
+  let h = `<div class="pd-cover"><div>
+      <p class="label">Dossier de proyectos · 2026</p>
+      <h1 style="margin-top:2mm">José Luis <span class="hl">Cuenca Gutiérrez</span></h1>
+      <p class="pd-roles">Estudiante de Ingeniería de Sistemas · Desarrollador de Software</p>
+      <p class="pd-contact"><span>jlcg17042001@gmail.com</span><span>linkedin.com/in/josecuencag</span><span>github.com/JCuenca17</span><span>Arequipa, Perú</span></p>
+      <p class="pd-lead">Estudiante de Ingeniería de Sistemas en la UNSA con formación Front-End en Oracle Next Education. Desarrollo aplicaciones web y móviles, extensiones que automatizan tareas repetitivas y prototipos que combinan juego, visión computacional y aprendizaje automático, con metodologías ágiles, control de versiones y pruebas de calidad.</p>
+    </div><div class="pd-photo"><img src="img/foto.jpg" alt=""></div></div>
+    <div class="pd-2">
+      <div><p class="pd-h">Trayectoria</p><div class="pd-tl">
+        <div><b>Practicante Pre-Profesional · YOFC Perú SAC</b><span>Ene 2026 – Presente</span></div>
+        <div><b>Ingeniería de Sistemas · UNSA</b><span>2018 – Presente</span></div>
+        <div><b>Desarrollo Front-end · Oracle Next Education</b><span>Oracle + Alura Latam · 2022 – 2023</span></div>
+        <div><b>Bootstrap 4: Front-End Web UI Frameworks</b><span>HKUST + Coursera · 2021</span></div>
+      </div></div>
+      <div><p class="pd-h">Tecnologías</p><div class="pd-sk">${skills.map(s => `<span>${esc(s)}</span>`).join("")}</div></div>
+    </div>
+    <p class="pd-h" style="margin-top:7mm">Proyectos</p>
+    <div class="pd-index">${PROJECTS.map((p, i) => `<div><i>${String(i + 1).padStart(2, "0")}</i><span><b>${esc(p.title)}</b> — ${esc(p.kicker)}</span><em>${p.typeLabel} · ${p.year}</em></div>`).join("")}</div>`;
+  PROJECTS.forEach((p, i) => {
+    const imgs = p.images.slice(0, 2);
+    const cls = imgs.length === 1 ? "one" : "";
+    const contain = p.id === "afev" ? " contain" : "";
+    const links = p.links.map(l => `<a href="${l.href}">${esc(l.label)}: ${esc(l.href.replace(/^https?:\/\//, "").replace(/\/$/, ""))}</a>`).join(" · ");
+    h += `<article class="pd-proj">
+      <div class="pd-ph"><h2>${String(i + 1).padStart(2, "0")} · ${esc(p.title)}</h2><span class="t">${p.typeLabel} · ${p.year}</span></div>
+      <p class="pd-kick">${esc(p.kicker)}</p>
+      <div class="pd-imgs ${cls}${contain}">${imgs.map(m => `<img src="${m.src}" alt="">`).join("")}</div>
+      ${p.note ? `<p class="pd-note">${p.note}</p>` : ""}
+      <p class="pd-sum">${esc(p.summary)}</p>
+      <dl class="pd-meta">${p.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+      ${links || p.priv ? `<p class="pd-links">${links}${links && p.priv ? " · " : ""}${p.priv ? "Código privado, disponible bajo solicitud" : ""}</p>` : ""}
+      <div class="pd-lists"><div><p class="pd-h">Características integradas</p><ul>${p.car.map(x => `<li>${x}</li>`).join("")}</ul></div>
+      <div><p class="pd-h">Funcionalidades</p><ul>${p.fun.map(x => `<li>${x}</li>`).join("")}</ul></div></div>
+      <div class="pd-tech"><p class="pd-h">Tecnologías</p><div class="pd-sk">${p.tec.map(t => `<span>${esc(t)}</span>`).join("")}</div></div>
+    </article>`;
+  });
+  $("#print-doc").innerHTML = h;
+}
+
+/* ── Arranque ── */
+renderSkills(); renderAlso(); renderCards(); applyFilters(false); renderPrint();
+
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  if (b.dataset.clear) state.tech = null; else { state.type = b.dataset.type; state.tech = null; }
+  applyFilters(true);
+});
+$("#grid").addEventListener("click", e => { const c = e.target.closest(".card"); if (c) openProject(+c.dataset.i); });
+$("#g-prev").onclick = () => showImg(img - 1);
+$("#g-next").onclick = () => showImg(img + 1);
+$("#f-strip").addEventListener("click", e => { const b = e.target.closest("button"); if (b) showImg(+b.dataset.k); });
+document.querySelector(".tabs").addEventListener("click", e => { const b = e.target.closest("[role=tab]"); if (b) showTab(b.dataset.k); });
+document.querySelector(".tabs").addEventListener("keydown", e => {
+  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+  const ks = ["car","fun","tec"]; const n = ks[(ks.indexOf(tab) + (e.key === "ArrowRight" ? 1 : 2)) % 3];
+  showTab(n); document.getElementById("tab-" + n).focus();
+});
+$("#p-prev").onclick = e => openProject(+e.currentTarget.dataset.i);
+$("#p-next").onclick = e => openProject(+e.currentTarget.dataset.i);
+$("#f-close").onclick = () => ficha.close();
+ficha.addEventListener("click", e => { if (e.target === ficha) ficha.close(); });
+ficha.addEventListener("keydown", e => {
+  if (lupa.open || e.target.closest(".tabs")) return;
+  if (e.key === "ArrowRight") showImg(img + 1);
+  if (e.key === "ArrowLeft") showImg(img - 1);
+});
+$("#f-img").onclick = () => { const m = PROJECTS[cur].images[img]; $("#l-img").src = m.src; $("#l-img").alt = m.cap; $("#l-cap").textContent = m.cap; const many = PROJECTS[cur].images.length > 1; $("#l-prev").hidden = $("#l-next").hidden = !many; lupa.showModal(); };
+$("#l-close").onclick = () => lupa.close();
+$("#l-prev").onclick = () => showImg(img - 1);
+$("#l-next").onclick = () => showImg(img + 1);
+lupa.addEventListener("click", e => { if (e.target === lupa) lupa.close(); });
+lupa.addEventListener("keydown", e => { if (e.key === "ArrowRight") showImg(img + 1); if (e.key === "ArrowLeft") showImg(img - 1); });
+
+document.querySelectorAll(".js-pdf").forEach(b => b.addEventListener("click", () => descargarPDF(b)));
+
+$("#copyMail").onclick = async () => {
+  const mail = "jlcg17042001@gmail.com";
+  try { await navigator.clipboard.writeText(mail); toast("Email copiado"); }
+  catch { location.href = "mailto:" + mail; }
+};
+
+const nav = $("#nav");
+addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 8), { passive: true });
+const links = [...document.querySelectorAll(".nav-links a")];
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id));
+}), { rootMargin: "-45% 0px -50% 0px" });
+["sobre-mi","habilidades","proyectos","contacto"].forEach(id => io.observe(document.getElementById(id)));
+</script>
