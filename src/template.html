@@ -1,9 +1,10 @@
 <title>Portafolio José Luis Cuenca</title>
 <meta name="description" content="Dossier y portafolio de José Luis Cuenca Gutiérrez: proyectos, características, funcionalidades y tecnologías.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:500 800;font-display:swap;src:url(fonts/p-bricolage-grotesque-normal-500_800.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Figtree';font-style:italic;font-weight:400;font-display:swap;src:url(fonts/p-figtree-italic-400.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Figtree';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/p-figtree-normal-400_700.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url(fonts/p-jetbrains-mono-normal-400_500.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 :root{
   --ground:#F5F9F9; --paper:#FFFFFF; --ink:#0D1B1E; --ink-2:#3A4A4F; --muted:#627479;
   --rule:#DCE6E7; --rule-soft:#EAF1F1;
@@ -65,7 +66,7 @@ button{font:inherit;color:inherit}
 .social svg{width:19px;height:19px}
 .portrait{position:relative;justify-self:center;width:min(100%,360px)}
 .portrait .frame{position:relative;aspect-ratio:1;border-radius:28px;overflow:hidden;background:#fff;border:1.5px solid var(--ink);z-index:1}
-.portrait .frame img{display:block;width:100%;height:100%;object-fit:cover}
+.portrait .frame picture,.portrait .frame img{display:block;width:100%;height:100%;object-fit:cover}
 .portrait::before{content:"";position:absolute;inset:0;transform:translate(16px,16px);border-radius:28px;background:var(--cyan);border:1.5px solid var(--ink)}
 .portrait .stamp{position:absolute;z-index:2;left:-18px;bottom:28px;background:var(--paper);border:1.5px solid var(--ink);border-radius:14px;padding:10px 14px;display:flex;gap:10px;align-items:center;font-size:13.5px;line-height:1.25;box-shadow:var(--shadow)}
 .stamp .dot{width:10px;height:10px;border-radius:50%;background:#19B35F;box-shadow:0 0 0 4px #D6F5E3;flex:none}
@@ -120,6 +121,7 @@ section{padding-block:72px;border-top:1px solid var(--rule)}
 .card.enter{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes pop{from{transform:scale(.97) translateY(8px)}to{transform:none}}
 .thumb{aspect-ratio:16/10;overflow:hidden;background:var(--teal-soft);border-bottom:1.5px solid var(--rule)}
+.thumb picture{display:block;width:100%;height:100%}
 .thumb img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s ease}
 .card:hover .thumb img{transform:scale(1.04)}
 .c-body{padding:16px 18px 18px;display:grid;gap:6px;flex:1;align-content:start}
@@ -161,6 +163,7 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
 @keyframes sheetIn{from{transform:translateY(18px) scale(.985)}to{transform:none}}
 .gal{background:var(--ground);display:grid;grid-template-rows:minmax(0,1fr) auto auto;border-right:1.5px solid var(--rule);min-height:0}
 .stage{position:relative;min-height:0;display:grid;place-items:center;padding:24px}
+#f-pic{display:contents}
 .stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;border:1px solid var(--rule);background:#fff;cursor:zoom-in;box-shadow:var(--shadow)}
 .arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);cursor:pointer;display:grid;place-items:center;transition:background .15s}
 .arrow:hover{background:var(--cyan)}
@@ -172,6 +175,7 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
 .strip button{flex:none;width:92px;aspect-ratio:16/10;border-radius:9px;overflow:hidden;border:2px solid transparent;padding:0;cursor:pointer;background:#fff;opacity:.6;transition:opacity .15s,border-color .15s}
 .strip button[aria-current="true"]{border-color:var(--ink);opacity:1}
 .strip button:hover{opacity:1}
+.strip picture{display:block;width:100%;height:100%}
 .strip img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .info{display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-height:0}
 .i-head{padding:22px 26px 0;display:grid;gap:4px;position:relative}
@@ -330,11 +334,12 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
     </div>
   </div>
   <div class="portrait">
-    <div class="frame"><img src="img/foto.jpg" alt="Fotografía de José Luis Cuenca"></div>
+    <div class="frame"><picture><source type="image/avif" srcset="img/avif/foto-400.avif"><img src="img/foto.jpg" alt="Fotografía de José Luis Cuenca" width="400" height="400" fetchpriority="high" decoding="async"></picture></div>
     <div class="stamp"><span class="dot"></span><span><b>Practicante pre-profesional</b>Ingeniería de Sistemas · UNSA</span></div>
   </div>
 </header>
 
+<main id="contenido">
 <section id="sobre-mi" aria-labelledby="t-sobre">
   <div class="s-head"><div><p class="label">Sobre mí</p><h2 id="t-sobre">Ingeniería, código y problemas reales</h2></div></div>
   <div class="about">
@@ -379,6 +384,8 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
   </div>
 </section>
 
+</main>
+
 <footer><span>© 2026 José Luis Cuenca Gutiérrez</span><span>Los proyectos con código privado pueden mostrarse bajo solicitud.</span></footer>
 </div>
 
@@ -386,7 +393,7 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
   <div class="sheet">
     <div class="gal">
       <div class="stage">
-        <img id="f-img" alt="">
+        <picture id="f-pic"><source id="f-src" type="image/avif" sizes="(max-width:1000px) 94vw, 620px"><img id="f-img" alt="" decoding="async"></picture>
         <button class="arrow l" type="button" id="g-prev" aria-label="Captura anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
         <button class="arrow r" type="button" id="g-next" aria-label="Captura siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
         <span class="zoom-hint">Clic para ampliar</span>
@@ -586,6 +593,16 @@ const PROJECTS = [
 const TYPES = [["todos","Todos"],["web","Web"],["movil","Móvil"],["juego","Juegos"],["extension","Extensión"],["formal","Métodos formales"]];
 
 /* ── utilidades ── */
+const AVIF_W = __AVIF_WIDTHS__;
+function avifSet(src) {
+  const name = src.replace(/^img\//, "").replace(/\.(jpg|png)$/, "");
+  const ws = AVIF_W[name]; if (!ws) return "";
+  return ws.map(w => `img/avif/${name}-${w}.avif ${w}w`).join(", ");
+}
+function pic(src, alt, sizes, extra = "") {
+  const set = avifSet(src);
+  return `<picture>${set ? `<source type="image/avif" srcset="${set}" sizes="${sizes}">` : ""}<img src="${src}" alt="${esc(alt)}" ${extra}></picture>`;
+}
 const $ = (s, r = document) => r.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function techIcon(key, colored = true) {
@@ -611,10 +628,10 @@ const ALSO = [
   {name:"Pruebas de software", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>'}
 ];
 function renderAlso() {
-  $("#also").insertAdjacentHTML("beforeend", ALSO.map(a => {
+  $("#also").innerHTML = '<span class="also-t">También con formación en</span>' + ALSO.map(a => {
     const ico = a.svg ? a.svg : `<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#${a.hex || ICONS[a.icon].hex}"><path d="${ICONS[a.icon].d}"/></svg>`;
     return `<span class="c">${ico}${esc(a.name)}</span>`;
-  }).join(""));
+  }).join("");
 }
 
 /* ── Habilidades ── */
@@ -647,8 +664,8 @@ function renderFilters() {
 }
 function renderCards() {
   $("#grid").innerHTML = PROJECTS.map((p, i) => `
-    <button class="card" type="button" data-i="${i}" aria-label="Abrir ${esc(p.title)}">
-      <div class="thumb"><img src="${p.thumb}" alt="" loading="eager"></div>
+    <button class="card" type="button" data-i="${i}">
+      <div class="thumb">${pic(p.thumb, "", "(max-width:620px) 92vw, (max-width:1000px) 46vw, 360px", 'loading="lazy" decoding="async" width="800" height="500"')}</div>
       <div class="c-body">
         <div class="c-top"><span class="c-type">${p.typeLabel}</span><span class="c-year">${p.year}</span></div>
         <h3>${esc(p.title)}</h3>
@@ -684,7 +701,7 @@ function openProject(i) {
   $("#f-meta").innerHTML = p.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
   $("#f-links").innerHTML = p.links.map(l => `<a class="btn sm ${l.primary ? "cy" : ""}" href="${l.href}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("") +
     (p.priv ? `<span class="priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Código privado</span>` : "");
-  $("#f-strip").innerHTML = p.images.map((m, k) => `<button type="button" data-k="${k}" aria-label="Captura ${k + 1}"><img src="${m.src}" alt=""></button>`).join("");
+  $("#f-strip").innerHTML = p.images.map((m, k) => `<button type="button" data-k="${k}" aria-label="Captura ${k + 1}">${pic(m.src, "", "92px", 'loading="lazy" decoding="async"')}</button>`).join("");
   const many = p.images.length > 1;
   $("#g-prev").hidden = $("#g-next").hidden = $("#f-strip").hidden = !many;
   const ord = visibleOrder(), pos = ord.indexOf(i);
@@ -699,7 +716,7 @@ function openProject(i) {
 function showImg(k) {
   const p = PROJECTS[cur]; const n = p.images.length; img = (k + n) % n;
   const m = p.images[img];
-  $("#f-img").src = m.src; $("#f-img").alt = m.cap; $("#f-cap").textContent = m.cap;
+  $("#f-src").srcset = avifSet(m.src); $("#f-img").src = m.src; $("#f-img").alt = m.cap; $("#f-cap").textContent = m.cap;
   document.querySelectorAll("#f-strip button").forEach(b => b.setAttribute("aria-current", String(+b.dataset.k === img)));
   if (lupa.open) { $("#l-img").src = m.src; $("#l-img").alt = m.cap; $("#l-cap").textContent = m.cap; }
 }
@@ -772,7 +789,8 @@ function renderPrint() {
 }
 
 /* ── Arranque ── */
-renderSkills(); renderAlso(); renderCards(); applyFilters(false); renderPrint();
+renderSkills(); renderAlso(); renderCards(); applyFilters(false);
+addEventListener("beforeprint", renderPrint);
 
 $("#filters").addEventListener("click", e => {
   const b = e.target.closest(".chip"); if (!b) return;
