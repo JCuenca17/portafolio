@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://portafolio-jlcg.vercel.app/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
+    <loc>https://portafolio-jlcg.vercel.app/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
     <image:image><image:loc>https://portafolio-jlcg.vercel.app/img/foto.jpg</image:loc></image:image>
     <image:image><image:loc>https://portafolio-jlcg.vercel.app/img/boehm-nivel.jpg</image:loc></image:image>
     <image:image><image:loc>https://portafolio-jlcg.vercel.app/img/thehaus-plano.jpg</image:loc></image:image>
@@ -13,5 +13,5 @@
     <image:image><image:loc>https://portafolio-jlcg.vercel.app/img/yachay-0.jpg</image:loc></image:image>
     <image:image><image:loc>https://portafolio-jlcg.vercel.app/img/afev-code.jpg</image:loc></image:image>
   </url>
-  <url><loc>https://portafolio-jlcg.vercel.app/Dossier-JoseLuis-Cuenca.pdf</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://portafolio-jlcg.vercel.app/Dossier-JoseLuis-Cuenca.pdf</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
