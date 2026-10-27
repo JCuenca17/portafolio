@@ -18,3 +18,5 @@ python src/build.py
 ```
 
 Se despliega en Vercel como sitio estático, sin build step.
+
+© 2026 José Luis Cuenca Gutiérrez. Todos los derechos reservados.
