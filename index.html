@@ -954,20 +954,8 @@ function showTab(k) {
 }
 
 /* ── PDF ── */
-const downloadsReady = (window.claude && typeof window.claude.use === "function") ? window.claude.use("downloads").catch(() => null) : Promise.resolve(null);
-async function descargarPDF(btn) {
-  btn.setAttribute("aria-busy", "true");
-  try {
-    const dl = await downloadsReady;
-    if (!dl) { const a = document.createElement("a"); a.href = PDF_FILE; a.download = PDF_FILE; document.body.appendChild(a); a.click(); a.remove(); return; }
-    const res = await fetch(PDF_FILE); if (!res.ok) throw { code: "fetch" };
-    await dl.save({ filename: PDF_FILE, data: await res.blob() });
-    toast("Dossier descargado");
-  } catch (e) {
-    if (e && e.code === "declined") toast("Descarga cancelada");
-    else if (e && e.code === "rate_limited") toast("Ya hay una descarga esperando confirmación");
-    else { window.open(PDF_FILE, "_blank", "noopener"); }
-  } finally { btn.removeAttribute("aria-busy"); }
+function descargarPDF() {
+  const a = document.createElement("a"); a.href = PDF_FILE; a.download = PDF_FILE; document.body.appendChild(a); a.click(); a.remove();
 }
 
 /* ── Documento para imprimir (PDF) ── */
@@ -1049,7 +1037,7 @@ $("#l-next").onclick = () => showImg(img + 1);
 lupa.addEventListener("click", e => { if (e.target === lupa) lupa.close(); });
 lupa.addEventListener("keydown", e => { if (lupaCert) return; if (e.key === "ArrowRight") showImg(img + 1); if (e.key === "ArrowLeft") showImg(img - 1); });
 
-document.querySelectorAll(".js-pdf").forEach(b => b.addEventListener("click", () => descargarPDF(b)));
+document.querySelectorAll(".js-pdf").forEach(b => b.addEventListener("click", descargarPDF));
 
 $("#copyMail").onclick = async () => {
   const mail = "jlcg17042001@gmail.com";

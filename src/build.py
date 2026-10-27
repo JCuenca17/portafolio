@@ -4,9 +4,8 @@
 - img/avif/   -> variantes AVIF responsive de cada imagen
 - Dossier-JoseLuis-Cuenca.pdf -> mismo contenido en modo impresión
 - robots.txt, sitemap.xml, site.webmanifest, vercel.json
-- --artifact RUTA -> versión sin <html>/<head> para publicar como Artifact de Claude
 
-Uso:  python src/build.py [--artifact RUTA] [--look CARPETA]
+Uso:  python src/build.py [--look CARPETA]
 """
 import datetime, json, sys
 from pathlib import Path
@@ -61,9 +60,6 @@ body = (tpl.replace("__ICONS__", json.dumps(icons, separators=(",", ":")))
            .replace("__FREELANCE_URL__", cfg["freelance_url"]))
 
 args = sys.argv[1:]
-if "--artifact" in args:
-    dst = Path(args[args.index("--artifact") + 1]); dst.parent.mkdir(parents=True, exist_ok=True)
-    dst.write_text(body, encoding="utf-8"); print("artifact:", dst)
 look = Path(args[args.index("--look") + 1]) if "--look" in args else None
 
 TITLE = "José Luis Cuenca | Desarrollador de Software en Arequipa · Portafolio"
