@@ -162,6 +162,21 @@ section{padding-block:72px;border-top:1px solid var(--rule)}
 .cert-honor{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:600;color:#6E5A22;background:#F4EDDA;padding:1px 8px;border-radius:999px;vertical-align:1px}
 .cert-detail{font-size:14px;color:var(--ink-2);line-height:1.45}
 .cert-foot{padding:0 18px 18px}
+.badges-h{margin:40px 0 16px;display:flex;align-items:baseline;justify-content:space-between;gap:6px 16px;flex-wrap:wrap}
+.badges-h h3{font-size:21px;font-weight:700}
+.badges-h p{color:var(--muted);font-size:14.5px}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px}
+.badge{display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start;padding:16px 18px;background:var(--paper);border:1.5px solid var(--rule);border-radius:18px;transition:border-color .2s,box-shadow .2s,transform .2s}
+.badge:hover{border-color:var(--ink);box-shadow:0 6px 0 -2px var(--ink);transform:translateY(-3px)}
+.badge>img{width:80px;height:80px;object-fit:contain}
+.badge-body{display:grid;gap:4px;min-width:0}
+.badge-org{font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;color:var(--teal);text-transform:uppercase}
+.badge h4{font-size:16.5px;font-weight:700;line-height:1.25}
+.badge-meta{font-size:13.5px;color:var(--muted)}
+.badge-detail{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.badge-link{justify-self:start;margin-top:4px;font-size:13.5px;font-weight:600;color:var(--ink);text-decoration:underline;text-decoration-color:var(--cyan);text-decoration-thickness:2px;text-underline-offset:3px}
+.badge-link:hover{text-decoration-color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.badge,.badge:hover{transition:none;transform:none}}
 .empty{padding:40px;text-align:center;color:var(--muted);border:1.5px dashed var(--rule);border-radius:20px}
 
 /* Contacto */
@@ -292,18 +307,18 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
   .pd-photo{width:38mm;aspect-ratio:1;border-radius:6mm;overflow:hidden;border:1.5px solid var(--ink);box-shadow:3mm 3mm 0 var(--cyan)}
   .pd-photo img{width:100%;height:100%;object-fit:cover;display:block}
   .pd-lead{margin-top:3mm;font-size:9.8pt;color:var(--ink-2);line-height:1.55}
-  .pd-2{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:4.5mm}
+  .pd-2{display:grid;grid-template-columns:.72fr 1.28fr;gap:8mm;margin-top:3.5mm}
   .pd-h{font-family:var(--f-mono);font-size:8pt;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:2.5mm}
   .pd-tl{display:grid;gap:2.5mm}
   .pd-tl div b{display:block;font-size:10pt}
   .pd-tl div span{font-size:9pt;color:var(--muted)}
   .pd-sk{display:flex;flex-wrap:wrap;gap:1.6mm}
-  .pd-sk span{border:1px solid var(--rule);border-radius:99px;padding:.6mm 2.6mm;font-size:8.8pt}
-  .pd-certs{display:grid;grid-template-columns:1fr 1fr;gap:1.5mm 8mm}
+  .pd-sk span{border:1px solid var(--rule);border-radius:99px;padding:.5mm 2.3mm;font-size:8.5pt}
+  .pd-certs{display:grid;grid-template-columns:1fr 1fr;gap:1.2mm 8mm}
   .pd-certs div b{display:block;font-size:9.2pt;line-height:1.25}
   .pd-certs div span{font-size:8.3pt;color:var(--muted)}
   .pd-index{margin-top:2mm;display:grid;gap:0}
-  .pd-index div{display:grid;grid-template-columns:9mm 1fr auto;gap:3mm;padding:1.3mm 0;border-bottom:1px solid var(--rule-soft);font-size:9.5pt}
+  .pd-index div{display:grid;grid-template-columns:9mm 1fr auto;gap:3mm;padding:.8mm 0;border-bottom:1px solid var(--rule-soft);font-size:9.5pt}
   .pd-index i{font-style:normal;font-family:var(--f-mono);color:var(--teal)}
   .pd-index em{font-style:normal;color:var(--muted);font-size:8.5pt}
   .pd-proj{break-before:page}
@@ -406,6 +421,8 @@ dialog::backdrop{background:rgba(13,27,30,.55);backdrop-filter:blur(3px)}
 <section id="certificaciones" aria-labelledby="t-cert">
   <div class="s-head"><div><p class="label">Certificaciones</p><h2 id="t-cert">Formación certificada</h2></div><p>Toca un certificado para verlo en grande o verifícalo en la plataforma que lo emitió.</p></div>
   <div class="certs" id="certs"></div>
+  <div class="badges-h"><h3>Insignias verificadas</h3><p>Emitidas en Credly por Cisco, Google Cloud y CertiProf.</p></div>
+  <div class="badges" id="badges"></div>
 </section>
 
 <section class="contact" id="contacto" aria-labelledby="t-cont">
@@ -641,6 +658,26 @@ const CERTS = [
     detail:"Curso de The Hong Kong University of Science and Technology." }
 ];
 
+const CREDLY = "https://www.credly.com/badges/";
+const BADGES = [
+  { title:"Junior Cybersecurity Analyst Career Path", org:"Cisco Networking Academy", img:"img/badge-jcap.png", date:"Jun 2026",
+    id:"369cdb0b-c936-4251-bd66-2152b1489bf9",
+    detail:"Ruta de 6 cursos: Introduction to Cybersecurity, Networking Basics, Networking Devices and Initial Configuration, Endpoint Security, Network Defense y Cyber Threat Management." },
+  { title:"Ethical Hacker", org:"Cisco Networking Academy", img:"img/badge-ehacker.png", date:"Jul 2026",
+    id:"56772191-33e6-493e-90e0-cc97467ff673", detail:"Hacking ético: pruebas de penetración y evaluación de vulnerabilidades." },
+  { title:"Enhance Gemini Model Capabilities", org:"Google Cloud", img:"img/badge-gemini.png", date:"Jun 2025",
+    id:"495271e6-168e-4bf1-82bf-946aa1c10a76", detail:"Insignia de habilidad en IA generativa con modelos Gemini en Google Cloud." },
+  { title:"Google Cloud Computing Foundations Certificate", org:"Google Cloud", img:"img/badge-gcf.png", date:"Oct 2024",
+    id:"2c95cb8d-9295-4edd-a451-f839164e2302",
+    detail:"Incluye 4 insignias de habilidad: entorno de desarrollo de aplicaciones, balanceo de carga en Compute Engine, redes seguras y preparación de datos para APIs de ML." },
+  { title:"Business Intelligence Foundation Professional Certification", org:"CertiProf", img:"img/badge-bi.png", date:"Vigente hasta dic 2026",
+    id:"a8d76dd3-d103-42a3-ba43-175ba28d6731" },
+  { title:"Lean Six Sigma White Belt Professional Certification", org:"CertiProf", img:"img/badge-lss.png", date:"Vigente hasta ene 2027",
+    id:"ead16255-3e78-4bb9-9064-6133792cdda7" },
+  { title:"Business Model Canvas Essentials Professional Certification", org:"CertiProf", img:"img/badge-bmc.png", date:"Vigente hasta ene 2027",
+    id:"e5fb7c4d-25f6-4e69-a45d-2cad78bd7a98" }
+];
+
 const TYPES = [["todos","Todos"],["web","Web"],["movil","Móvil"],["juego","Juegos"],["extension","Extensión"],["formal","Métodos formales"]];
 
 /* ── utilidades ── */
@@ -675,6 +712,12 @@ const ALSO = [
   {name:"PostgreSQL", icon:"postgresql"},
   {name:"Git", icon:"git"},
   {name:"GitHub", icon:"github"},
+  {name:"Google Cloud", icon:"googlecloud"},
+  {name:"Gemini (IA generativa)", icon:"googlegemini"},
+  {name:"Ciberseguridad", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.5a2 2 0 0 1 4 0V11"/></svg>'},
+  {name:"Redes", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-4h12v4"/></svg>'},
+  {name:"Business Intelligence", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M7 16v-5M12 16V6M17 16v-8"/></svg>'},
+  {name:"Mejora de procesos (Lean)", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>'},
   {name:"Metodologías ágiles", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>'},
   {name:"Pruebas de software", svg:'<svg viewBox="0 0 24 24" fill="none" stroke="#007A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>'}
 ];
@@ -754,6 +797,20 @@ function renderCerts() {
       <div class="cert-foot"><a class="btn sm" href="${c.url}" target="_blank" rel="noopener">${c.verify ? "Verificar certificado" : "Ver certificado (PDF)"} ↗</a></div>
     </article>`).join("");
 }
+function renderBadges() {
+  if ($("#badges").firstElementChild) return;
+  $("#badges").innerHTML = BADGES.map(b => `
+    <article class="badge">
+      <img src="${b.img}" alt="Insignia ${esc(b.title)}" width="80" height="80" loading="lazy" decoding="async">
+      <div class="badge-body">
+        <p class="badge-org">${esc(b.org)}</p>
+        <h4>${esc(b.title)}</h4>
+        <p class="badge-meta">${b.date}</p>
+        ${b.detail ? `<p class="badge-detail">${esc(b.detail)}</p>` : ""}
+        <a class="badge-link" href="${CREDLY + b.id}" target="_blank" rel="noopener">Verificar en Credly ↗</a>
+      </div>
+    </article>`).join("");
+}
 let lupaCert = false;
 function openCert(i) {
   const c = CERTS[i]; lupaCert = true;
@@ -828,9 +885,9 @@ function renderPrint() {
       </div></div>
       <div><p class="pd-h">Tecnologías</p><div class="pd-sk">${skills.map(s => `<span>${esc(s)}</span>`).join("")}</div></div>
     </div>
-    <p class="pd-h" style="margin-top:4.5mm">Certificaciones</p>
-    <div class="pd-certs">${CERTS.map(c => `<div><b>${esc(c.title)}</b><span>${esc(c.org)}${c.hours ? " · " + c.hours + " h" : ""} · ${c.date}</span></div>`).join("")}</div>
-    <p class="pd-h" style="margin-top:4.5mm">Proyectos</p>
+    <p class="pd-h" style="margin-top:3.5mm">Certificaciones</p>
+    <div class="pd-certs">${CERTS.map(c => `<div><b>${esc(c.title)}</b><span>${esc(c.org)}${c.hours ? " · " + c.hours + " h" : ""} · ${c.date}</span></div>`).join("")}${[...new Set(BADGES.map(b => b.org))].map(o => `<div><b>${esc(BADGES.filter(b => b.org === o).map(b => b.title.replace(/ Professional Certification$/, "")).join(" · "))}</b><span>${esc(o)} · insignias en Credly</span></div>`).join("")}</div>
+    <p class="pd-h" style="margin-top:3.5mm">Proyectos</p>
     <div class="pd-index">${PROJECTS.map((p, i) => `<div><i>${String(i + 1).padStart(2, "0")}</i><span><b>${esc(p.title)}</b> — ${esc(p.kicker)}</span><em>${p.typeLabel} · ${p.year}</em></div>`).join("")}</div>`;
   PROJECTS.forEach((p, i) => {
     const imgs = p.images.slice(0, 2);
@@ -854,7 +911,7 @@ function renderPrint() {
 }
 
 /* ── Arranque ── */
-renderSkills(); renderAlso(); renderCards(); renderCerts(); applyFilters(false);
+renderSkills(); renderAlso(); renderCards(); renderCerts(); renderBadges(); applyFilters(false);
 $("#certs").addEventListener("click", e => { const b = e.target.closest(".cert-shot"); if (b) openCert(+b.dataset.c); });
 addEventListener("beforeprint", renderPrint);
 
