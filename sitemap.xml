@@ -18,4 +18,8 @@
     <image:image><image:loc>https://portafolio-jlcg.vercel.app/img/webp/yachay-1.webp</image:loc></image:image>
     <image:image><image:loc>https://portafolio-jlcg.vercel.app/img/webp/afev-code.webp</image:loc></image:image>
   </url>
+  <url>
+    <loc>https://portafolio-jlcg.vercel.app/privacidad.html</loc>
+    <lastmod>2026-11-04</lastmod>
+  </url>
 </urlset>
