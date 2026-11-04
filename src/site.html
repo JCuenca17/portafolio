@@ -6,7 +6,7 @@
 <style>
 /* Layout: cada sección mide lo que su contenido, dimensionado con unidades de alto de pantalla para no pasar nunca del alto visible (laptops, monitores y celulares). Títulos centrados en Anton, texto en Sora; paleta hueso, tinta, turquesa, coral y amarillo. Tema claro único, por decisión del autor. */
 :root{
-  --ground:#F6F6F3; --paper:#FFFFFF; --ink:#111413; --ink-2:#3B403E; --muted:#6E7471; --rule:#E3E4DF;
+  --ground:#F6F6F3; --paper:#FFFFFF; --ink:#111413; --ink-2:#3B403E; --muted:#5C625F; --rule:#E3E4DF;
   --teal:#00C9B7; --teal-ink:#006B62; --teal-soft:#D7F7F3;
   --coral:#FF6B4A; --coral-ink:#B23A20; --coral-soft:#FFE3DB;
   --yellow:#FFD84D; --yellow-soft:#FFF4C7; --violet:#8B6CFF; --violet-soft:#ECE9FF;
@@ -129,7 +129,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .wall.dim .lgt:not(.on){opacity:.16;filter:grayscale(1)}
 .wall.dim .lgt.on{border-color:var(--c);box-shadow:0 0 0 2px var(--c) inset}
 @media (max-width:700px){
-  .idx{font-size:13.5px;margin-bottom:12px}.idx .sep{padding:0 2px}.idx button{padding:1px 3px}
+  .idx{font-size:13.5px;margin-bottom:12px;row-gap:6px}.idx .sep{padding:0 2px}.idx button{padding:1px 3px;min-height:24px}
   .lgt{border-radius:12px;padding:3px}
   .lgt .tip{display:none}
 }
@@ -175,8 +175,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .arr:hover{background:var(--yellow);transform:translateY(-2px)}
 .arr:active{transform:translateY(1px)}
 .arr svg{width:20px;height:20px}
-.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
-.dot{width:10px;height:10px;border-radius:999px;border:0;background:#9FD9D2;cursor:pointer;padding:0;transition:width .3s,background .3s}
+.dots{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.dot{width:10px;height:10px;border-radius:999px;border:0;background:#9FD9D2;cursor:pointer;padding:0;transition:width .3s,background .3s;position:relative}
+.dot::after{content:"";position:absolute;inset:-8px -4px}
 .dot[aria-current="true"]{width:30px;background:var(--ink)}
 .pause{border:0;background:none;font:600 12.5px var(--f-body);color:var(--ink-2);text-decoration:underline;cursor:pointer;padding:4px}
 .cf-info{margin:calc(var(--vh) * 1.4) auto 0;max-width:900px;display:grid;justify-items:center;text-align:center;gap:calc(var(--vh) * 1)}
@@ -196,6 +197,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .more-gh span{font-weight:600;color:var(--ink)}.more-gh i{font-style:normal;color:var(--muted);font-weight:500}
 .more-gh a{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--teal);text-underline-offset:3px}
 @media (max-width:700px){.more-gh{font-size:12px}}
+.contact .svc{margin:4px auto 14px;display:inline-flex}
+@media (max-width:700px) and (max-height:700px){.contact .svc{margin:0 auto 8px;padding:9px 14px;font-size:13px}.contact p{margin-bottom:8px}#contacto footer{padding-top:10px;margin-top:0;gap:2px;font-size:11.5px}#contacto footer span:last-child{display:none}}
 /* formación */
 .certs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 @media (max-width:900px){.certs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.certs .cert{flex:0 0 82%;scroll-snap-align:center}}
@@ -482,12 +485,13 @@ footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;paddin
     <span class="eyebrow">Contacto</span>
     <h2 class="t">¿Tienes un <mark>proyecto</mark>?</h2>
     <p>Cuéntame tu idea y te digo cómo la resolvería, en cuánto tiempo y a qué costo.</p>
+    <a class="btn dark svc" href="https://portafoliofreelance-jlcg.vercel.app/" target="_blank" rel="noopener">Ver mis servicios de desarrollo web ↗</a>
     <div class="reach"><span class="mail" id="mail">jlcg17042001@gmail.com</span><button class="btn dark sm" type="button" id="copy">Copiar correo</button><a class="btn sm" href="https://www.linkedin.com/in/josecuencag/" target="_blank" rel="noopener">LinkedIn ↗</a><a class="btn sm" href="https://github.com/JCuenca17" target="_blank" rel="noopener">GitHub ↗</a></div>
   </div>
   <footer><span>© 2026 José Luis Cuenca Gutiérrez · Arequipa, Perú</span><span>Hecho por mí, con HTML, CSS y JavaScript</span></footer>
 </div></section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="js/gsap-3.12.5.min.js"></script>
 <script>
 const ICONS = %%ICONS%%;
 const ico = k => ICONS[k] ? `<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#${ICONS[k].hex}"><path d="${ICONS[k].d}"/></svg>` : "";
@@ -497,12 +501,13 @@ const motionOK = !matchMedia("(prefers-reduced-motion: reduce)").matches;
 const P = [
   { k:"juego", type:"Videojuego de tesis", y:2026, img:"%%IMG:coco-portada%%", t:"Coco en casa", d:"Un niño de 5 años cuida a Coco durante un día en casa y cada tarea evalúa un concepto básico del Boehm-3 Preescolar, mientras se registran el movimiento del ratón y la expresión facial.", proof:"Reconocimiento facial en el navegador, sin enviar video", tech:[["Phaser",""],["JavaScript","javascript"],["Python","python"],["scikit-learn","scikitlearn"]], links:[], priv:true },
   { k:"auto", type:"Extensión", y:2026, img:"%%IMG:pro-mock%%", t:"PracticantePro", d:"Bot que recoge las fotos de evidencia de los grupos de WhatsApp y las carga por lote en el sistema de registro, monitor que cruza aperturas, visitas y uso de internet de cada centro, y avisos en serie a los encargados.", proof:"De una jornada a unos minutos · usada en 3 regiones", tech:[["Extensiones de Chrome","googlechrome"],["JavaScript","javascript"],["Bots de WhatsApp",""]], links:[], priv:true },
+  { k:"auto", type:"Agente con IA · en desarrollo", y:2026, img:"%%IMG:iac-revision%%", t:"Agente IaC", d:"A partir de un requerimiento en lenguaje natural, un LLM diseña la infraestructura cloud en JSON. De ese diseño salen el diagrama para que una persona lo revise y el código OpenTofu, que se valida por capas y se despliega en un emulador de AWS.", proof:"", tech:[["TypeScript","typescript"],["Node.js","nodedotjs"],["Agentes con LLM",""],["OpenTofu","opentofu"],["AWS","amazonwebservices"],["Mermaid","mermaid"],["Vitest","vitest"]], links:[], priv:true },
   { k:"movil", type:"App móvil", y:2026, img:"%%IMG:market-phones%%", t:"UNSA Market", d:"App Android para comprar y vender entre estudiantes, con acceso institucional y reputación del vendedor.", proof:"Publicada en Google Play · 29 de 33 commits", tech:[["React Native",""],["TypeScript","typescript"],["Firebase","firebase"],["Expo","expo"]], links:[["Google Play","https://play.google.com/store/apps/details?id=com.unsa.market"],["Repositorio","https://github.com/JCuenca17/unsa-market"]] },
   { k:"web", type:"Web", y:2026, img:"%%IMG:thehaus-plano%%", t:"The Haus", d:"Reserva de puestos de coworking directamente sobre un plano 3D del local, con descuentos por volumen.", proof:"three.js · PWA instalable · pro bono", tech:[["JavaScript","javascript"],["three.js","threedotjs"],["Vercel","vercel"]], links:[["Abrir el plano 3D","https://thehaus-pink.vercel.app/app/"],["Landing","https://thehaus-pink.vercel.app/"]] },
   { k:"web", type:"Web", y:2026, img:"%%IMG:hack4edu-portal%%", t:"Portal Hack4Edu", d:"Portal de entregas y panel del jurado del hackathon Hack4Edu UNSA 2026. La API está en Google Apps Script y guarda todo en Google Sheets y Drive.", proof:"En uso en la 7.ª edición del hackathon · Comité de Tecnología", tech:[["JavaScript","javascript"],["Google Apps Script","googleappsscript"],["Google Sheets","googlesheets"],["Vercel","vercel"]], links:[["Ver portal","https://hack4edu-entregas-web.vercel.app/"]], priv:true },
   { k:"web", type:"App web · datos", y:2025, img:"%%IMG:agropredic%%", t:"AgroPredic", d:"Estima cuántos kilos conviene producir de palta, mango y arándano según las ventas históricas, ajustando por clima (El Niño, La Niña, olas de calor).", proof:"7 pruebas automatizadas · análisis con SonarQube", tech:[["Flask","flask"],["Python","python"],["pandas","pandas"],["SQLite","sqlite"],["SonarQube","sonarqube"]], links:[["Repositorio","https://github.com/JCuenca17/proyecto-cultivos"]] },
   { k:"web", type:"Sistema distribuido", y:2025, img:"%%IMG:tienda%%", t:"Tienda Solidaria", d:"Tienda para organizaciones sociales con dos proveedores como nodos independientes, cada uno con su API y su base de datos; el frontend habla con ambos a la vez.", proof:"2 nodos FastAPI con stock propio", tech:[["FastAPI","fastapi"],["SQLAlchemy","sqlalchemy"],["SQLite","sqlite"],["JavaScript","javascript"]], links:[["Repositorio","https://github.com/JCuenca17/sd-final"]] },
-  { k:"web", type:"Web", y:2026, img:"%%IMG:freelance-hero%%", t:"Perfil freelance", d:"Landing de mis servicios con paquetes de precio fijo, módulos opcionales y términos de trabajo claros.", proof:"100 / 100 / 100 / 100 en Lighthouse", tech:[["HTML5","html5"],["CSS3","css"],["JavaScript","javascript"]], links:[["Ver sitio","https://portafoliofreelance-jlcg.vercel.app/"],["Repositorio","https://github.com/JCuenca17/landing-page"]] },
+  { k:"web", type:"Web", y:2026, img:"%%IMG:freelance-hero%%", t:"Servicios de desarrollo web", d:"Landing de mis servicios con paquetes de precio fijo, módulos opcionales y términos de trabajo claros.", proof:"100 / 100 / 100 / 100 en Lighthouse", tech:[["HTML5","html5"],["CSS3","css"],["JavaScript","javascript"]], links:[["Ver sitio","https://portafoliofreelance-jlcg.vercel.app/"],["Repositorio","https://github.com/JCuenca17/landing-page"]] },
   { k:"web", type:"Web", y:2026, img:"%%IMG:landing-thumb%%", t:"Landing UNSA Market", d:"Sitio promocional de la app, sin frameworks, con foco en rendimiento y diseño responsive.", proof:"Lleva a la descarga en Google Play", tech:[["HTML5","html5"],["CSS3","css"],["JavaScript","javascript"]], links:[["Ver sitio","https://unsamarket.vercel.app/"]] },
   { k:"web", type:"Web", y:2024, img:"%%IMG:labne-maestro%%", t:"Maestro de Equipos", d:"Inventario de equipos de laboratorio con login, filtros combinados, borrado lógico e instalable como PWA.", proof:"42 commits · desarrollador único", tech:[["Python","python"],["Django","django"],["MySQL","mysql"],["Bootstrap","bootstrap"]], links:[["Repositorio","https://github.com/JCuenca17/lab_ne"]] },
   { k:"juego", type:"Videojuego", y:2024, img:"%%IMG:yachay-1%%", t:"Yachay", d:"Juego en Unity para aprender vocabulario en quechua: atrapa la traducción correcta con la canasta.", proof:"Jugable en el navegador", tech:[["Unity","unity"],["C#",""]], links:[["Jugar en itch.io","https://abduzcan17.itch.io/yachay"]] },
@@ -596,7 +601,7 @@ document.getElementById("flips").addEventListener("click", e => { const f = e.ta
 /* ── Carrusel en bucle ── */
 const stage = document.getElementById("cfstage"), dots = document.getElementById("cfdots"), info = document.getElementById("cfinfo");
 const N = P.length; let cur = 0; const prevOff = [];
-stage.innerHTML = P.map((p, i) => `<button class="cf-card" type="button" data-i="${i}" aria-label="Ver ${esc(p.t)}"><img src="${p.img}" alt="" draggable="false"><span class="shine"></span><span class="tag">${p.type}</span></button>`).join("");
+stage.innerHTML = P.map((p, i) => `<button class="cf-card" type="button" data-i="${i}" aria-label="${esc(p.type)}: ${esc(p.t)}"><img src="${p.img}" srcset="${p.img.replace(".webp", "-640.webp")} 640w, ${p.img} 1100w" sizes="(max-width:700px) 86vw, 640px" alt="" draggable="false"><span class="shine"></span><span class="tag">${p.type}</span></button>`).join("");
 dots.innerHTML = P.map((p, i) => `<button class="dot" type="button" data-i="${i}" aria-label="Proyecto ${i + 1}: ${esc(p.t)}"></button>`).join("");
 const cards = [...stage.querySelectorAll(".cf-card")];
 const wrapOff = i => { let o = i - cur; if (o > N / 2) o -= N; if (o < -N / 2) o += N; return o; };
@@ -620,7 +625,7 @@ function layout(dir, instant) {
 }
 function renderInfo(anim) {
   const p = P[cur];
-  info.innerHTML = `<div class="row1"><span class="type ${p.k}">${p.type} · ${p.y}</span><span class="proof">${esc(p.proof)}</span></div>
+  info.innerHTML = `<div class="row1"><span class="type ${p.k}">${p.type} · ${p.y}</span></div>
     <h3 class="t">${esc(p.t)}</h3><p>${esc(p.d)}</p>
     <div class="row2">${p.tech.map(([n, k]) => `<span class="chip">${ico(k)}${esc(n)}</span>`).join("")}
       ${p.links.map(([l, h], j) => `<a class="btn sm${j === 0 ? " dark" : ""}" href="${h}" target="_blank" rel="noopener">${esc(l)} ↗</a>`).join("")}${p.priv ? `<span class="priv">${lock}Código privado</span>` : ""}</div>`;
@@ -667,7 +672,7 @@ document.getElementById("copy").addEventListener("click", e => {
 if (window.gsap && motionOK) {
   const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: .55 } });
   tl.from(".hero h1 .row>span", { yPercent: 100, stagger: .08, duration: .7, ease: "power4.out" })
-    .fromTo(".hero .lead, .hero .cta, .hero .socials", { y: 12, opacity: .2 }, { y: 0, opacity: 1, stagger: .06, clearProps: "transform,opacity" }, "-=.4")
+    .fromTo(".hero .cta, .hero .socials", { y: 12, opacity: .2 }, { y: 0, opacity: 1, stagger: .06, clearProps: "transform,opacity" }, "-=.4")
     .fromTo(".visual .shape", { scale: .85 }, { scale: 1, duration: .6 }, .1)
     .fromTo(".sticker", { scale: .6 }, { scale: 1, stagger: .08, ease: "back.out(2)", clearProps: "scale" }, .45);
 }

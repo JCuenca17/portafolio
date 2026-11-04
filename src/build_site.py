@@ -29,11 +29,21 @@ for f in (SRC / "capturas").glob("*.jpg"):
             im = im.resize((1600, round(im.height * 1600 / im.width)), Image.LANCZOS)
         im.save(dst, "JPEG", quality=84, optimize=True, progressive=True)
 files = {p.stem: p.name for p in IMG.iterdir() if p.suffix.lower() in (".jpg", ".png")}
+WEBP = IMG / "webp"; WEBP.mkdir(exist_ok=True)
 def img(m):
     key = m.group(1)
     if key not in files: raise SystemExit(f"Falta la imagen: {key}")
-    return "img/" + files[key]
+    src, dst = IMG / files[key], WEBP / f"{key}.webp"
+    if not dst.exists() or dst.stat().st_mtime < src.stat().st_mtime:
+        im = Image.open(src); im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
+        if im.width > 1100: im = im.resize((1100, round(im.height * 1100 / im.width)), Image.LANCZOS)
+        im.save(dst, "WEBP", quality=80, method=6)
+        small = im.resize((640, round(im.height * 640 / im.width)), Image.LANCZOS) if im.width > 640 else im
+        small.save(WEBP / f"{key}-640.webp", "WEBP", quality=78, method=6)
+    return f"img/webp/{key}.webp"
 body = re.sub(r"%%IMG:([\w-]+)%%", img, body)
+# certificados: versión liviana para celular
+body = re.sub(r'<img src="(img/webp/(cert-[\w-]+))\.webp"', lambda m: f'<img src="{m.group(1)}.webp" srcset="{m.group(1)}-640.webp 640w, {m.group(1)}.webp 1100w" sizes="(max-width:700px) 40vw, 420px"', body)
 
 # ── logos ──
 icons = json.loads((SRC / "icons.json").read_text(encoding="utf-8"))
@@ -99,17 +109,17 @@ head = f"""<!doctype html>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="José Luis Cuenca · Desarrollador full stack">
 <meta name="twitter:image" content="{URL}og.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;500;600;700&display=swap">
+<link rel="preload" as="font" type="font/woff2" href="fonts/anton-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/sora-latin.woff2" crossorigin>
+<link rel="preload" as="image" href="img/webp/foto.webp" fetchpriority="high">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False, separators=(",", ":"))}</script>
-<style>body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
+<style>@font-face{{font-family:"Anton";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/anton-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}}@font-face{{font-family:"Sora";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/sora-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}}body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 </head>
 <body>
 """
 (ROOT / "index.html").write_text(head + body + "\n</body>\n</html>\n", encoding="utf-8")
 today = datetime.date.today().isoformat()
-imgs = ["img/foto.jpg"] + [m for m in dict.fromkeys(re.findall(r'img:"(img/[^"]+)"', body))]
+imgs = ["img/webp/foto.webp"] + [m for m in dict.fromkeys(re.findall(r'img:"(img/[^"]+)"', body))]
 (ROOT / "sitemap.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
